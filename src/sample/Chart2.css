@@ -1,0 +1,35 @@
+.chart-plot-background{
+-fx-padding:0px;
+-fx-font-family: Verdana;
+-fx-background-color: linear-gradient(to bottom right, lightsteelblue, black);
+}
+.chart-content{
+-fx-background-color: linear-gradient(to bottom right, lightsteelblue, black);
+-fx-padding:30px;
+}
+
+.chart-line-symbol {
+    -fx-background-radius: 0px;
+    -fx-padding: 0px;
+}
+
+.axis {
+    -fx-font-size: 2.4em;
+    -fx-tick-label-font-size: 1.5em;
+    -fx-tick-label-fill: #ffffff;
+    -fx-tick-length: 7;
+    -fx-minor-tick-length: 3;
+
+}
+
+.chart-series-line {
+    -fx-stroke-width: 5px;
+    -fx-effect: null;
+    -fx-stroke: #ffffff;
+    -fx-stroke-type: centered;
+    }
+
+.axis-label {
+   -fx-text-fill: #ffffff;
+}
+

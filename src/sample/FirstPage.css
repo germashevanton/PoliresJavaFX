@@ -1,0 +1,64 @@
+root {
+    display: block;
+}
+.root {
+-fx-background-image: url("images/aluminumbulk01.jpg");
+}
+
+#welcome-text {
+   -fx-font-size: 30px;
+   -fx-font-family: "Arial Black";
+   -fx-fill: linear-gradient(#0D9DF4, #0d1df4);
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+#actiontarget {
+  -fx-fill: FIREBRICK;
+  -fx-font-weight: bold;
+  -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
+#milling {
+    -fx-text-fill: #000000;
+    -fx-font-size: 33px;
+     -fx-background-image: url("images/medical-cnc.jpg");
+     -fx-background-size: 290px 160px;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position: center;
+    -fx-min-height: 170px;
+    -fx-min-width: 300px;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#0D9DF4, #0deef4);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#milling_classical {
+    -fx-text-fill: #000000;
+    -fx-font-size: 33px;
+     -fx-background-image: url("images/2-Niagara-S638-MultiFlute-EndMill_Action.jpg");
+     -fx-background-size: 290px 160px;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position: center;
+    -fx-min-height: 170px;
+    -fx-min-width: 300px;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#0D9DF4, #0deef4);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#turning {
+    -fx-text-fill: #000000;
+    -fx-text-aligment: left;
+    -fx-font-size: 33px;
+     -fx-background-image: url("images/cnc-turning.jpg");
+     -fx-background-size: 290px 160px;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position: center;
+    -fx-min-height: 170px;
+    -fx-min-width: 300px;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#0D9DF4, #0deef4);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}

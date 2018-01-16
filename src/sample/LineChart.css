@@ -1,0 +1,72 @@
+.chart-line-symbol {
+    -fx-background-radius: 0px;
+    -fx-padding: 0px;
+}
+.chart {
+    -fx-padding: 10px;
+
+}
+.chart-content {
+    -fx-padding: 30px;
+}
+.chart-legend {
+   -fx-background-color:  transparent;
+   -fx-padding: 20px;
+}
+
+.chart-legend-item-symbol{
+   -fx-background-radius: 0;
+}
+
+.chart-legend-item{
+    -fx-text-fill: #191970;
+}
+
+.chart-plot-background {
+    -fx-background-color: #929599;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: #000000;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: #000000;
+}
+.chart-alternative-row-fill {
+    -fx-fill: #ffffff;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 0;
+}
+
+.axis {
+    -fx-font-size: 2.4em;
+    -fx-tick-label-font-size: 1.5em;
+    -fx-tick-label-fill: #000000;
+    -fx-font-family: TimesNewRoman;
+    -fx-tick-length: 10;
+    -fx-minor-tick-length: 5;
+
+}
+
+.axis-label {
+   -fx-text-fill: #000000;
+}
+
+.axis-tick-mark {
+    -fx-stroke: #000000;
+    -fx-stroke-width: 3;
+}
+.axis-minor-tick-mark {
+    -fx-stroke: #000000;
+    -fx-stroke-width: 2;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 5px;
+    -fx-effect: null;
+    -fx-stroke: #000000;
+    -fx-stroke-type: centered;
+    }
+
+
+
+

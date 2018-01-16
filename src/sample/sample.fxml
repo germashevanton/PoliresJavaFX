@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+<?language javascript?>
+
+<GridPane fx:id="condition" alignment="center" hgap="10" styleClass="root" vgap="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller2">
+<padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+
+    <Text id="welcome-text" text="Welcome" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+
+    <Label text="Diameter of the Mill, mm" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="diameter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+
+    <Label text="Type of the mill" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <RadioButton fx:id="ball_mill" selected="true" text="Ball end" userData="222" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+        <toggleGroup>
+            <ToggleGroup fx:id="toggleGroup" />
+        </toggleGroup>
+      <GridPane.margin>
+         <Insets />
+      </GridPane.margin>
+    </RadioButton>
+    <RadioButton fx:id="bull_mill" selected="false" styleClass="custom-jfx-radio-button" text="Radius End" toggleGroup="$toggleGroup" userData="222" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+
+    <Label text="Radius of the Mill, mm" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <TextField id="radius" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+
+    <Label text="Processing material" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <ComboBox fx:id="processingMaterial" prefWidth="150" promptText="choose" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+
+    <Label text="Feed direction" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <RadioButton fx:id="up_milling" selected="true" text="Up milling" userData="222" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+        <toggleGroup>
+            <ToggleGroup fx:id="toggleGroupFeed" />
+        </toggleGroup>
+        <GridPane.margin>
+            <Insets />
+        </GridPane.margin>
+    </RadioButton>
+    <RadioButton fx:id="down_milling" selected="false" text="Down milling  " toggleGroup="$toggleGroupFeed" userData="222" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+
+    <Label text="Halex angle, deg" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+    <TextField id="halex" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+
+    <Label text="Teeth number" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+    <TextField id="teeth_number" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+
+    <Label text="Axial depth of cut, mm" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+    <TextField id="axial_depth" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+
+    <Label text="Radial depth of cut, mm" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+    <TextField id="radial_depth" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+
+    <Label text="Feed per tooth, mm/tooth" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+    <TextField id="feed" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+
+
+    <Label text="Tilt angle, deg" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+    <TextField id="tilt" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+
+
+    <HBox  alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="12">
+        <Button fx:id="next" onAction="#handleSubmitButtonActionNext" text="Next" />
+        <Button fx:id="cancel" onAction="#handleSubmitButtonAction1" text="Cancel" />
+    </HBox>
+
+
+    <Text fx:id="actiontarget" GridPane.columnIndex="0" GridPane.rowIndex="12" />
+
+    <stylesheets>
+        <URL value="@Login.css" />
+    </stylesheets>
+
+
+</GridPane>
