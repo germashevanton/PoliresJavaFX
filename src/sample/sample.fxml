@@ -58,27 +58,27 @@
 
 
     <Label text="Halex angle, deg" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-    <TextField id="halex" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <TextField fx:id="halex" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
 
     <Label text="Teeth number" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-    <TextField id="teeth_number" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <TextField fx:id="teeth_number" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
 
     <Label text="Axial depth of cut, mm" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-    <TextField id="axial_depth" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <TextField fx:id="axial_depth" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
 
     <Label text="Radial depth of cut, mm" GridPane.columnIndex="0" GridPane.rowIndex="9" />
-    <TextField id="radial_depth" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <TextField fx:id="radial_depth" GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
 
     <Label text="Feed per tooth, mm/tooth" GridPane.columnIndex="0" GridPane.rowIndex="10" />
-    <TextField id="feed" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+    <TextField fx:id="feed" GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
 
     <Label text="Tilt angle, deg" GridPane.columnIndex="0" GridPane.rowIndex="11" />
-    <TextField id="tilt" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+    <TextField fx:id="tilt" GridPane.columnIndex="1" GridPane.rowIndex="11" />
 
 
     <HBox  alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="12">

@@ -33,6 +33,22 @@ public class Controller2 implements Initializable {
     private TextField diameter;
 
     @FXML
+    private TextField halex;
+
+    @FXML
+    private TextField teeth_number;
+
+    @FXML
+    private TextField axial_depth;
+
+    @FXML
+    private TextField radial_depth;
+
+    @FXML
+    private TextField feed;
+
+
+    @FXML
     private ToggleGroup toggleGroup;
 
     @FXML
@@ -55,14 +71,27 @@ public class Controller2 implements Initializable {
 
 
     @FXML protected void handleSubmitButtonActionNext(ActionEvent actionEvent) {
+        float dMill = Float.parseFloat(diameter.getText());
+        float w = Float.parseFloat(halex.getText());
+        int nt = Integer.parseInt(teeth_number.getText());
+        float ae = Float.parseFloat(radial_depth.getText());
+        float ap = Float.parseFloat(axial_depth.getText());
+        float ft = Float.parseFloat(feed.getText());
+
+
         actiontarget.setText(diameter.getText() + " "  + toggleGroup.getSelectedToggle().getUserData().toString() + processingMaterial.getSelectionModel().getSelectedItem()) ;
 
+        ToolContact toolContact = new ToolContact();
         Polires polires = new Polires();
         ForceCalculation forceCalculation = new ForceCalculation();
-        double fMax = forceCalculation.forceCalc(2400, 60, 0.05, 154, 2);
 
-        polires.foruerCoefCalc(102, 6, 0.07);
-        polires.poliresCalc(700, 60,102, 2400, 6);
+        double startAngle = toolContact.startAngle(dMill, ae, ft, w, ap);
+        double contactAngle = toolContact.cuttingPeriod(dMill, ae, ft, w, ap);
+
+        double fMax = forceCalculation.forceCalc(2400, 60, ft, startAngle, ap);
+
+        polires.foruerCoefCalc(102, nt, contactAngle);
+        polires.poliresCalc(700, 60,fMax, 2400, nt);
         double[] f = polires.getF();
         double[] v = polires.getWwSpeed();
 

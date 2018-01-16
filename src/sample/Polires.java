@@ -2,7 +2,7 @@ package sample;
 
 
 public class Polires {
-    private static int pointsNumber = 1000;//2850
+    private static int pointsNumber = 2850;//2850
     private int harmonicsNumber = 16;
     private double rotationalSpeed = 0.004;
     private double rotationalPeriod = 2 * Math.PI / rotationalSpeed;
