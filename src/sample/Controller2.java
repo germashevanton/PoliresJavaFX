@@ -3,6 +3,7 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -10,8 +11,10 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 import java.net.URL;
 import java.util.Optional;
@@ -55,22 +58,31 @@ public class Controller2 implements Initializable {
     private Text actiontarget;
 
     @FXML
+    private TextField radius;
+
+    @FXML
     private TextField diameter;
+    float dMill  = -1;
 
     @FXML
     private TextField halex;
+    float w = -1;
 
     @FXML
     private TextField teeth_number;
+    int nt = -1;
 
     @FXML
     private TextField axial_depth;
+    float ae = -1;
 
     @FXML
     private TextField radial_depth;
+    float ap = -1;
 
     @FXML
     private TextField feed;
+    float ft = -1;
 
 
     @FXML
@@ -88,6 +100,10 @@ public class Controller2 implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         processingMaterial.setItems(materials);
+        radius.setDisable(true);
+        next.setDisable(true);
+        diameter.getStyleClass().add("error");
+
     }
 
     @FXML
@@ -95,15 +111,27 @@ public class Controller2 implements Initializable {
         stage.close();
     }
 
+    @FXML
+    protected void activateRadiusField(ActionEvent actionEvent){
+        radius.setDisable(false);
+    }
+
+    @FXML
+    protected  void disableRadiusField(ActionEvent actionEvent){
+        radius.setDisable(true);
+    }
+
+    @FXML
+    protected void diameterValidation(KeyEvent event){
+        System.out.println("some good");
+        dMill = textConverter(diameter);
+        checkParams();
+
+    }
+
 
     @FXML
     protected void handleSubmitButtonActionNext(ActionEvent actionEvent) {
-        float dMill = Float.parseFloat(diameter.getText());
-        float w = Float.parseFloat(halex.getText());
-        int nt = Integer.parseInt(teeth_number.getText());
-        float ae = Float.parseFloat(radial_depth.getText());
-        float ap = Float.parseFloat(axial_depth.getText());
-        float ft = Float.parseFloat(feed.getText());
 
 
         actiontarget.setText(diameter.getText() + " " + toggleGroup.getSelectedToggle().getUserData().toString() + processingMaterial.getSelectionModel().getSelectedItem());
@@ -169,6 +197,28 @@ public class Controller2 implements Initializable {
         stage.show();
 
 
+    }
+
+    private float textConverter(TextField textField){
+        float temp;
+        String val = textField.getText();
+        val = val.replace(',','.');
+        try {
+            temp =  Float.parseFloat(val);
+            textField.getStyleClass().remove("error");
+            return temp;
+        } catch (Exception ex){
+            textField.setTooltip(new Tooltip("Invalid data"));
+            textField.getStyleClass().add("error");
+
+            return -1;
+        }
+    }
+
+    private void checkParams(){
+        if(dMill != -1 && w != -1 && ae != -1 && ap != -1 && ft != -1 && nt != -1){
+            next.setDisable(false);
+        }
     }
 
 }
