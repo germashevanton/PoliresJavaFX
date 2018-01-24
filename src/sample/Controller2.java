@@ -3,7 +3,6 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -14,6 +13,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.Service.Materials;
+import sample.Service.Service;
 
 
 import java.net.URL;
@@ -27,83 +28,52 @@ import static sample.Controller.stage;
  */
 public class Controller2 implements Initializable {
 
-    private ObservableList<String> materials = FXCollections.observableArrayList("Gray cast iron",
-            "1020 carbon steel",
-            "1035 carbon steel",
-            "1045 carbon steel",
-            "302 stainless steel",
-            "4140/5140 alloy steel",
-            "Ni-based Inconel X",
-            "Ni-based Udimet 500",
-            "Co-based L605",
-            "Ti (6Al, 4 V)",
-            "Al 7075-T6",
-            "Al 6061-T6");
-
-   /* private ObservableList<Material> materials = FXCollections.observableArrayList(
-            new Material(200, "Gray cast iron"),
-            new Material(200, "1020 carbon steel"),
-            new Material(200, "1035 carbon steel"),
-            new Material(200, "1045 carbon steel"),
-            new Material(200, "302 stainless steel"),
-            new Material(200, "4140/5140 alloy steel"),
-            new Material(200, "Ni-based Inconel X"),
-            new Material(200, "Co-based L605"),
-            new Material(200, "Ti (6Al, 4 V)"),
-            new Material(200, "Al 7075-T6"),
-            new Material(200, "Al 6061-T6"));*/
-
+    Service service = new Service();
+    Materials materials = new Materials();
+    ToolContact toolContact = new ToolContact();
+    Polires polires = new Polires();
+    ForceCalculation forceCalculation = new ForceCalculation();
 
     @FXML
     private Text actiontarget;
-
     @FXML
     private TextField radius;
-
     @FXML
     private TextField diameter;
-    float dMill  = -1;
-
     @FXML
     private TextField halex;
-    float w = -1;
-
     @FXML
     private TextField teeth_number;
-    int nt = -1;
-
     @FXML
     private TextField axial_depth;
-    float ae = -1;
-
     @FXML
     private TextField radial_depth;
-    float ap = -1;
-
     @FXML
     private TextField feed;
-    float ft = -1;
-
-
     @FXML
     private ToggleGroup toggleGroup;
-
     @FXML
     private ComboBox<String> processingMaterial;
-
     @FXML
     private Button cancel;
-
     @FXML
     private Button next;
 
+    private float r = -1;
+    private float dMill  = -1;
+    private float w = -1;
+    private int nt = -1;
+    private float ae = -1;
+    private float ap = -1;
+    private float ft = -1;
+    private float ks; //specific force coefficient
+    private float beta; //cutting force angle
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        processingMaterial.setItems(materials);
+        processingMaterial.setItems(materials.materialsList);
         radius.setDisable(true);
         next.setDisable(true);
-        diameter.getStyleClass().add("error");
-
     }
 
     @FXML
@@ -121,13 +91,7 @@ public class Controller2 implements Initializable {
         radius.setDisable(true);
     }
 
-    @FXML
-    protected void diameterValidation(KeyEvent event){
-        System.out.println("some good");
-        dMill = textConverter(diameter);
-        checkParams();
 
-    }
 
 
     @FXML
@@ -136,15 +100,15 @@ public class Controller2 implements Initializable {
 
         actiontarget.setText(diameter.getText() + " " + toggleGroup.getSelectedToggle().getUserData().toString() + processingMaterial.getSelectionModel().getSelectedItem());
 
-        ToolContact toolContact = new ToolContact();
-        Polires polires = new Polires();
-        ForceCalculation forceCalculation = new ForceCalculation();
+
 
         double startAngle = toolContact.startAngle(dMill, ae, ft, w, ap);
 
-        if (startAngle > 10){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Message Here...");
+
+        // Check contact angle  
+        if ((180 - startAngle) > (360/nt)){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
             alert.setHeaderText("Look, an Information Dialog");
             alert.setContentText("I have a great message for you!");
 
@@ -152,8 +116,6 @@ public class Controller2 implements Initializable {
             if (result.get() == ButtonType.OK){
                 return;
             }
-
-
         }
 
         double contactAngle = toolContact.cuttingPeriod(dMill, ae, ft, w, ap);
@@ -199,21 +161,7 @@ public class Controller2 implements Initializable {
 
     }
 
-    private float textConverter(TextField textField){
-        float temp;
-        String val = textField.getText();
-        val = val.replace(',','.');
-        try {
-            temp =  Float.parseFloat(val);
-            textField.getStyleClass().remove("error");
-            return temp;
-        } catch (Exception ex){
-            textField.setTooltip(new Tooltip("Invalid data"));
-            textField.getStyleClass().add("error");
 
-            return -1;
-        }
-    }
 
     private void checkParams(){
         if(dMill != -1 && w != -1 && ae != -1 && ap != -1 && ft != -1 && nt != -1){
@@ -221,4 +169,47 @@ public class Controller2 implements Initializable {
         }
     }
 
+    @FXML
+    protected void diameterValidation(KeyEvent event){
+        dMill = service.stringToFloatConverterValidator(diameter);
+        checkParams();
+    }
+
+    public void radiusValidation(KeyEvent keyEvent) {
+        r = service.stringToFloatConverterValidator(radius);
+        checkParams();
+    }
+
+    public void halexValidation(KeyEvent keyEvent) {
+        w = service.stringToFloatConverterValidator(halex);
+        checkParams();
+    }
+
+    public void ntValidation(KeyEvent keyEvent) {
+        nt = service.stringToIntConverterValidator(teeth_number);
+        checkParams();
+    }
+
+    public void apValidation(KeyEvent keyEvent) {
+        ap = service.stringToFloatConverterValidator(axial_depth);
+        checkParams();
+    }
+
+    public void aeValidation(KeyEvent keyEvent) {
+        ae = service.stringToFloatConverterValidator(radial_depth);
+        checkParams();
+    }
+
+    public void feedValidation(KeyEvent keyEvent) {
+        ft = service.stringToFloatConverterValidator(feed);
+        checkParams();
+    }
+
+    public void tiltValidation(KeyEvent keyEvent) {
+
+    }
+
+    public void selectionDone(ActionEvent actionEvent) {
+
+    }
 }
