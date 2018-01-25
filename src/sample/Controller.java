@@ -32,7 +32,7 @@ public class Controller {
         }
 
 
-        Scene scene = new Scene(root, 480, 600);
+        Scene scene = new Scene(root, 700, 600);
         scene.getStylesheets().add("sample/error.css");
         stage.setTitle("Advanced Cutting v1.1");
         stage.setScene(scene);

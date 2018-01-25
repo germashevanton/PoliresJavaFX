@@ -31,11 +31,13 @@ public class Service {
         try {
             temp =  Integer.parseInt(val);
             styleClass.remove("error");
+            System.out.println(styleClass.toString());
             return temp;
         } catch (Exception ex){
             textField.setTooltip(new Tooltip("Invalid input data"));
             if (!styleClass.contains("error")){
                 styleClass.add("error");
+                System.out.println(styleClass.toString());
             }
             return -1;
         }

@@ -10,6 +10,8 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -28,12 +30,16 @@ import static sample.Controller.stage;
  */
 public class Controller2 implements Initializable {
 
+
     Service service = new Service();
     Materials materials = new Materials();
     ToolContact toolContact = new ToolContact();
     Polires polires = new Polires();
     ForceCalculation forceCalculation = new ForceCalculation();
+    Image image1 = new Image(getClass().getResourceAsStream("images/medical-cnc.jpg"));
 
+    @FXML
+    public ImageView image;
     @FXML
     private Text actiontarget;
     @FXML
@@ -74,6 +80,9 @@ public class Controller2 implements Initializable {
         processingMaterial.setItems(materials.materialsList);
         radius.setDisable(true);
         next.setDisable(true);
+        image.setImage(image1);
+
+        System.out.println();
     }
 
     @FXML
@@ -89,10 +98,8 @@ public class Controller2 implements Initializable {
     @FXML
     protected  void disableRadiusField(ActionEvent actionEvent){
         radius.setDisable(true);
+
     }
-
-
-
 
     @FXML
     protected void handleSubmitButtonActionNext(ActionEvent actionEvent) {
@@ -164,7 +171,7 @@ public class Controller2 implements Initializable {
 
 
     private void checkParams(){
-        if(dMill != -1 && w != -1 && ae != -1 && ap != -1 && ft != -1 && nt != -1){
+        if(dMill != -1 && w != -1 && ae != -1 && ap != -1 && ft != -1 && nt != -1 && !processingMaterial.getSelectionModel().isEmpty()){
             next.setDisable(false);
         }
     }
@@ -210,6 +217,7 @@ public class Controller2 implements Initializable {
     }
 
     public void selectionDone(ActionEvent actionEvent) {
-
+        processingMaterial.getSelectionModel().getSelectedItem().toString();
+        checkParams();
     }
 }
