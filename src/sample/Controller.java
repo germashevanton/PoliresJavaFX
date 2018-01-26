@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,6 +35,7 @@ public class Controller {
 
         Scene scene = new Scene(root, 700, 600);
         scene.getStylesheets().add("sample/error.css");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("images/medical-cnc.jpg")));
         stage.setTitle("Advanced Cutting v1.1");
         stage.setScene(scene);
         stage.show();

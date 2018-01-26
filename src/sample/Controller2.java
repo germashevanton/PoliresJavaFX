@@ -13,12 +13,16 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.Service.Materials;
 import sample.Service.Service;
 
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -31,12 +35,14 @@ import static sample.Controller.stage;
 public class Controller2 implements Initializable {
 
 
+
     Service service = new Service();
     Materials materials = new Materials();
     ToolContact toolContact = new ToolContact();
     Polires polires = new Polires();
     ForceCalculation forceCalculation = new ForceCalculation();
     Image image1 = new Image(getClass().getResourceAsStream("images/medical-cnc.jpg"));
+    Image image2 = new Image(getClass().getResourceAsStream("images/cnc-turning.jpg"));
 
     @FXML
     public ImageView image;
@@ -64,6 +70,8 @@ public class Controller2 implements Initializable {
     private Button cancel;
     @FXML
     private Button next;
+    @FXML
+    public TextField tilt;
 
     private float r = -1;
     private float dMill  = -1;
@@ -72,6 +80,7 @@ public class Controller2 implements Initializable {
     private float ae = -1;
     private float ap = -1;
     private float ft = -1;
+    private float tiltAngle = -1;
     private float ks; //specific force coefficient
     private float beta; //cutting force angle
 
@@ -80,9 +89,28 @@ public class Controller2 implements Initializable {
         processingMaterial.setItems(materials.materialsList);
         radius.setDisable(true);
         next.setDisable(true);
-        image.setImage(image1);
 
-        System.out.println();
+        Field[] fields = getClass().getDeclaredFields();
+        Object object = this;
+        for (Field field : fields) {
+            if (field.getType().getName().equals("javafx.scene.control.TextField")){
+                TextField textField = null;
+                try {
+                    textField = (TextField) field.get(object);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+
+                if (textField != null) {
+                    textField.getStyleClass().add("error");
+                }
+
+            }
+        }
+
+        radius.getStyleClass().remove("error");
+
+        processingMaterial.getStyleClass().add("error");
     }
 
     @FXML
@@ -93,11 +121,18 @@ public class Controller2 implements Initializable {
     @FXML
     protected void activateRadiusField(ActionEvent actionEvent){
         radius.setDisable(false);
+        radius.getStyleClass().add("error");
     }
 
     @FXML
     protected  void disableRadiusField(ActionEvent actionEvent){
+        radius.setText("");
+        ObservableList<String> styleClass = radius.getStyleClass();
+        if (styleClass.contains("error")){
+            styleClass.remove("error");
+        }
         radius.setDisable(true);
+
 
     }
 
@@ -135,8 +170,7 @@ public class Controller2 implements Initializable {
         double[] v = polires.getWwSpeed();
 
         Stage stage = new Stage();
-
-
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("images/medical-cnc.jpg")));
         stage.setTitle("Amplitude - frequency characteristic");
         //defining the axes
         final NumberAxis xAxis = new NumberAxis();
@@ -157,15 +191,13 @@ public class Controller2 implements Initializable {
             series.getData().add(new XYChart.Data(v[i], f[i]));
         }
 
-        Scene scene = new Scene(lineChart, 800, 600);
+        Scene scene = new Scene(lineChart, 1240, 800);
         scene.getStylesheets().add("sample/Chart2.css");
         lineChart.getData().add(series);
 
 
         stage.setScene(scene);
         stage.show();
-
-
     }
 
 
@@ -213,11 +245,25 @@ public class Controller2 implements Initializable {
     }
 
     public void tiltValidation(KeyEvent keyEvent) {
-
+        tiltAngle = service.stringToFloatConverterValidator(tilt);
+        checkParams();
     }
 
     public void selectionDone(ActionEvent actionEvent) {
         processingMaterial.getSelectionModel().getSelectedItem().toString();
+        ObservableList<String> styleClass = processingMaterial.getStyleClass();
+        if (styleClass.contains("error")){
+            styleClass.remove("error");
+        }
         checkParams();
+    }
+
+
+    public void showPictureHalex(MouseEvent mouseEvent) {
+        image.setImage(image1);
+    }
+
+    public void showPictureTeethNumber(MouseEvent mouseEvent) {
+        image.setImage(image2);
     }
 }

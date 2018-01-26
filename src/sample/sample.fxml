@@ -22,9 +22,8 @@
         <Insets bottom="25.0" left="15.0" right="0" top="15.0" />
     </padding>
 
-    <!--<Text id="welcome-text" text="Welcome" GridPane.columnIndex="0" GridPane.rowIndex="0" />-->
-
     <ImageView fx:id="image" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
 
     <GridPane alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
 
@@ -32,7 +31,7 @@
             <Insets bottom="25.0" left="15.0" right="25.0" top="15.0" />
         </padding>
 
-        <Text id="welcome-text" text="Welcome" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Text id="welcome-text" text="Enter cutting condition" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
 
         <Label text="Diameter of the Mill, mm" GridPane.columnIndex="0" GridPane.rowIndex="1" />
@@ -74,11 +73,11 @@
 
 
         <Label text="Halex angle, deg" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-        <TextField fx:id="halex" onKeyReleased="#halexValidation" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <TextField fx:id="halex" onKeyReleased="#halexValidation" onMouseClicked="#showPictureHalex" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
 
         <Label text="Teeth number" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-        <TextField fx:id="teeth_number" onKeyReleased="#ntValidation" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <TextField fx:id="teeth_number" onKeyReleased="#ntValidation" onMouseClicked="#showPictureTeethNumber" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
 
         <Label text="Axial depth of cut, mm" GridPane.columnIndex="0" GridPane.rowIndex="8" />
