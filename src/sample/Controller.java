@@ -33,7 +33,7 @@ public class Controller {
         }
 
 
-        Scene scene = new Scene(root, 700, 600);
+        Scene scene = new Scene(root, 900, 600);
         scene.getStylesheets().add("sample/error.css");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("images/medical-cnc.jpg")));
         stage.setTitle("Advanced Cutting v1.1");

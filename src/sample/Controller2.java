@@ -41,8 +41,17 @@ public class Controller2 implements Initializable {
     ToolContact toolContact = new ToolContact();
     Polires polires = new Polires();
     ForceCalculation forceCalculation = new ForceCalculation();
-    Image image1 = new Image(getClass().getResourceAsStream("images/medical-cnc.jpg"));
-    Image image2 = new Image(getClass().getResourceAsStream("images/cnc-turning.jpg"));
+    Image diameterFig = new Image(getClass().getResourceAsStream("images/d_mill.png"));
+    Image ftFig = new Image(getClass().getResourceAsStream("images/fz.png"));
+    Image ntFig = new Image(getClass().getResourceAsStream("images/ft.png"));
+    Image radiusFig = new Image(getClass().getResourceAsStream("images/radiuus_ball.png"));
+    Image apFig = new Image(getClass().getResourceAsStream("images/ap.png"));
+    Image aeFig = new Image(getClass().getResourceAsStream("images/ae.png"));
+    Image ballMillFif = new Image(getClass().getResourceAsStream("images/miil_radius.png"));
+    Image bullMillFig = new Image(getClass().getResourceAsStream("images/mill_bull.png"));
+    Image wFig = new Image(getClass().getResourceAsStream("images/w.jpg"));
+    Image tiltFig = new Image(getClass().getResourceAsStream("images/tilt.jpg"));
+
 
     @FXML
     public ImageView image;
@@ -111,6 +120,7 @@ public class Controller2 implements Initializable {
         radius.getStyleClass().remove("error");
 
         processingMaterial.getStyleClass().add("error");
+        image.setImage(diameterFig);
     }
 
     @FXML
@@ -259,11 +269,50 @@ public class Controller2 implements Initializable {
     }
 
 
+    public void showFtFig(MouseEvent mouseEvent) {
+        image.setImage(ftFig);
+    }
+
+    public void showDiamFig(MouseEvent mouseEvent) {
+        image.setImage(diameterFig);
+    }
+
+
+    public void showBallMillFig(MouseEvent mouseEvent) {
+        image.setImage(ballMillFif);
+    }
+
+    public void showBullMillFig(MouseEvent mouseEvent) {
+        image.setImage(bullMillFig);
+    }
+
+    public void showRadiusFig(MouseEvent mouseEvent) {
+        image.setImage(radiusFig);
+    }
+
     public void showPictureHalex(MouseEvent mouseEvent) {
-        image.setImage(image1);
+        image.setImage(wFig);
     }
 
     public void showPictureTeethNumber(MouseEvent mouseEvent) {
-        image.setImage(image2);
+        image.setImage(ntFig);
+    }
+
+    public void showApFig(MouseEvent mouseEvent) {
+        image.setImage(apFig);
+    }
+
+    public void ShowAeFig(MouseEvent mouseEvent) {
+        image.setImage(aeFig);
+    }
+
+    public void showDownMillingFig(MouseEvent mouseEvent) {
+    }
+
+    public void showUpMillingFig(MouseEvent mouseEvent) {
+    }
+
+    public void showTiltFig(MouseEvent mouseEvent) {
+        image.setImage(tiltFig);
     }
 }

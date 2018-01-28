@@ -16,13 +16,13 @@
 <?import javafx.scene.text.Text?>
 <?language javascript?>
 
-<GridPane fx:id="condition" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller2">
+<GridPane fx:id="condition" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller2">
 
     <padding>
         <Insets bottom="25.0" left="15.0" right="0" top="15.0" />
     </padding>
 
-    <ImageView fx:id="image" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <ImageView fx:id="image" fitHeight="300" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
 
     <GridPane alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
@@ -35,12 +35,12 @@
 
 
         <Label text="Diameter of the Mill, mm" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <TextField fx:id="diameter" onKeyReleased="#diameterValidation" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="diameter" onKeyReleased="#diameterValidation" onMouseClicked="#showDiamFig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
 
         <Label text="Type of the mill" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-        <RadioButton fx:id="ball_mill" onAction="#disableRadiusField" selected="true" text="Ball end" userData="1" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+        <RadioButton fx:id="ball_mill" onAction="#disableRadiusField" onMouseClicked="#showBallMillFig" selected="true" text="Ball end" userData="1" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
             <toggleGroup>
                 <ToggleGroup fx:id="toggleGroup" />
             </toggleGroup>
@@ -49,11 +49,11 @@
             </GridPane.margin>
         </RadioButton>
 
-        <RadioButton fx:id="bull_mill" onAction="#activateRadiusField" selected="false" styleClass="custom-jfx-radio-button" text="Radius End" toggleGroup="$toggleGroup" userData="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <RadioButton fx:id="bull_mill" onAction="#activateRadiusField" onMouseClicked="#showBullMillFig" selected="false" styleClass="custom-jfx-radio-button" text="Radius End" toggleGroup="$toggleGroup" userData="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
 
         <Label text="Radius of the Mill, mm" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <TextField fx:id="radius" onKeyReleased="#radiusValidation" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <TextField fx:id="radius" onKeyReleased="#radiusValidation" onMouseClicked="#showRadiusFig" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
 
         <Label text="Processing material" GridPane.columnIndex="0" GridPane.rowIndex="4" />
@@ -61,7 +61,7 @@
 
 
         <Label text="Feed direction" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-        <RadioButton fx:id="up_milling" selected="true" text="Up milling" userData="222" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+        <RadioButton fx:id="up_milling" onMouseClicked="#showUpMillingFig" selected="true" text="Up milling" userData="222" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
             <toggleGroup>
                 <ToggleGroup fx:id="toggleGroupFeed" />
             </toggleGroup>
@@ -69,7 +69,7 @@
                 <Insets />
             </GridPane.margin>
         </RadioButton>
-        <RadioButton fx:id="down_milling" maxHeight="1.7976931348623157E308" selected="false" text="Down milling " toggleGroup="$toggleGroupFeed" userData="222" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <RadioButton fx:id="down_milling" maxHeight="1.7976931348623157E308" onMouseClicked="#showDownMillingFig" selected="false" text="Down milling " toggleGroup="$toggleGroupFeed" userData="222" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
 
         <Label text="Halex angle, deg" GridPane.columnIndex="0" GridPane.rowIndex="6" />
@@ -81,19 +81,19 @@
 
 
         <Label text="Axial depth of cut, mm" GridPane.columnIndex="0" GridPane.rowIndex="8" />
-        <TextField fx:id="axial_depth" onKeyReleased="#apValidation" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <TextField fx:id="axial_depth" onKeyReleased="#apValidation" onMouseClicked="#showApFig" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
 
         <Label text="Radial depth of cut, mm" GridPane.columnIndex="0" GridPane.rowIndex="9" />
-        <TextField fx:id="radial_depth" onKeyReleased="#aeValidation" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+        <TextField fx:id="radial_depth" onKeyReleased="#aeValidation" onMouseClicked="#ShowAeFig" GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
 
         <Label text="Feed per tooth, mm/tooth" GridPane.columnIndex="0" GridPane.rowIndex="10" />
-        <TextField fx:id="feed" onKeyReleased="#feedValidation" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+        <TextField fx:id="feed" onKeyReleased="#feedValidation" onMouseClicked="#showFtFig" GridPane.columnIndex="1" GridPane.rowIndex="10" />
 
 
         <Label text="Tilt angle, deg" GridPane.columnIndex="0" GridPane.rowIndex="11" />
-        <TextField fx:id="tilt" onKeyReleased="#tiltValidation" prefHeight="31.0" prefWidth="208.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+        <TextField fx:id="tilt" onKeyReleased="#tiltValidation" onMouseClicked="#showTiltFig" prefHeight="31.0" prefWidth="208.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
 
 
         <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="12">
@@ -130,11 +130,11 @@
     <stylesheets>
         <URL value="@Login.css" />
     </stylesheets>
-   <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints minWidth="520.0" prefWidth="520.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints prefWidth="300.0" />
+        <ColumnConstraints minWidth="520.0" prefWidth="520.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
 </GridPane>
