@@ -38,7 +38,7 @@
         <TextField fx:id="diameter" onKeyReleased="#diameterValidation" onMouseClicked="#showDiamFig" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
 
-        <Label text="Type of the mill" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label text="Type of the Mill" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
         <RadioButton fx:id="ball_mill" onAction="#disableRadiusField" onMouseClicked="#showBallMillFig" selected="true" text="Ball end" userData="1" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
             <toggleGroup>
@@ -61,7 +61,7 @@
 
 
         <Label text="Feed direction" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-        <RadioButton fx:id="up_milling" onMouseClicked="#showUpMillingFig" selected="true" text="Up milling" userData="222" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+        <RadioButton fx:id="up_milling" onMouseClicked="#showUpMillingFig" selected="true" text="Up Milling" userData="222" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
             <toggleGroup>
                 <ToggleGroup fx:id="toggleGroupFeed" />
             </toggleGroup>
@@ -69,7 +69,7 @@
                 <Insets />
             </GridPane.margin>
         </RadioButton>
-        <RadioButton fx:id="down_milling" maxHeight="1.7976931348623157E308" onMouseClicked="#showDownMillingFig" selected="false" text="Down milling " toggleGroup="$toggleGroupFeed" userData="222" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <RadioButton fx:id="down_milling" maxHeight="1.7976931348623157E308" onMouseClicked="#showDownMillingFig" selected="false" text="Down Milling " toggleGroup="$toggleGroupFeed" userData="222" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
 
         <Label text="Halex angle, deg" GridPane.columnIndex="0" GridPane.rowIndex="6" />
@@ -128,7 +128,7 @@
 
 
     <stylesheets>
-        <URL value="@Login.css" />
+        <URL value="@../Login.css" />
     </stylesheets>
     <columnConstraints>
         <ColumnConstraints prefWidth="300.0" />

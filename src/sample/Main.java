@@ -7,15 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import javax.swing.text.html.ImageView;
-import java.awt.*;
-
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("firstPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/firstPage.fxml"));
 
         Scene scene = new Scene(root, 480, 600);
 

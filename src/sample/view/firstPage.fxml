@@ -40,7 +40,7 @@
           GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
     <stylesheets>
-        <URL value="@FirstPage.css" />
+        <URL value="@../FirstPage.css" />
     </stylesheets>
 
 </GridPane>

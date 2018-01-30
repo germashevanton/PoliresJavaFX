@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -22,7 +20,6 @@ import sample.Service.Service;
 
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -41,6 +38,8 @@ public class Controller2 implements Initializable {
     ToolContact toolContact = new ToolContact();
     Polires polires = new Polires();
     ForceCalculation forceCalculation = new ForceCalculation();
+
+    //Images
     Image diameterFig = new Image(getClass().getResourceAsStream("images/d_mill.png"));
     Image ftFig = new Image(getClass().getResourceAsStream("images/fz.png"));
     Image ntFig = new Image(getClass().getResourceAsStream("images/ft.png"));
@@ -49,10 +48,12 @@ public class Controller2 implements Initializable {
     Image aeFig = new Image(getClass().getResourceAsStream("images/ae.png"));
     Image ballMillFif = new Image(getClass().getResourceAsStream("images/miil_radius.png"));
     Image bullMillFig = new Image(getClass().getResourceAsStream("images/mill_bull.png"));
-    Image wFig = new Image(getClass().getResourceAsStream("images/w.jpg"));
+    Image wFig = new Image(getClass().getResourceAsStream("images/w2.png"));
     Image tiltFig = new Image(getClass().getResourceAsStream("images/tilt.jpg"));
+    Image upMillingFig = new Image(getClass().getResourceAsStream("images/up_milling.png"));
+    Image downMillingFig = new Image(getClass().getResourceAsStream("images/down_milling.png"));
 
-
+    //FXML Elements
     @FXML
     public ImageView image;
     @FXML
@@ -82,6 +83,7 @@ public class Controller2 implements Initializable {
     @FXML
     public TextField tilt;
 
+    // Class fields
     private float r = -1;
     private float dMill  = -1;
     private float w = -1;
@@ -97,7 +99,7 @@ public class Controller2 implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         processingMaterial.setItems(materials.materialsList);
         radius.setDisable(true);
-        next.setDisable(true);
+        checkParamsToManageNextButton();
 
         Field[] fields = getClass().getDeclaredFields();
         Object object = this;
@@ -109,11 +111,9 @@ public class Controller2 implements Initializable {
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
-
                 if (textField != null) {
                     textField.getStyleClass().add("error");
                 }
-
             }
         }
 
@@ -142,8 +142,6 @@ public class Controller2 implements Initializable {
             styleClass.remove("error");
         }
         radius.setDisable(true);
-
-
     }
 
     @FXML
@@ -212,51 +210,53 @@ public class Controller2 implements Initializable {
 
 
 
-    private void checkParams(){
+    private void checkParamsToManageNextButton(){
         if(dMill != -1 && w != -1 && ae != -1 && ap != -1 && ft != -1 && nt != -1 && !processingMaterial.getSelectionModel().isEmpty()){
             next.setDisable(false);
+        } else {
+            next.setDisable(true);
         }
     }
 
     @FXML
     protected void diameterValidation(KeyEvent event){
         dMill = service.stringToFloatConverterValidator(diameter);
-        checkParams();
+        checkParamsToManageNextButton();
     }
 
     public void radiusValidation(KeyEvent keyEvent) {
         r = service.stringToFloatConverterValidator(radius);
-        checkParams();
+        checkParamsToManageNextButton();
     }
 
     public void halexValidation(KeyEvent keyEvent) {
         w = service.stringToFloatConverterValidator(halex);
-        checkParams();
+        checkParamsToManageNextButton();
     }
 
     public void ntValidation(KeyEvent keyEvent) {
         nt = service.stringToIntConverterValidator(teeth_number);
-        checkParams();
+        checkParamsToManageNextButton();
     }
 
     public void apValidation(KeyEvent keyEvent) {
         ap = service.stringToFloatConverterValidator(axial_depth);
-        checkParams();
+        checkParamsToManageNextButton();
     }
 
     public void aeValidation(KeyEvent keyEvent) {
         ae = service.stringToFloatConverterValidator(radial_depth);
-        checkParams();
+        checkParamsToManageNextButton();
     }
 
     public void feedValidation(KeyEvent keyEvent) {
         ft = service.stringToFloatConverterValidator(feed);
-        checkParams();
+        checkParamsToManageNextButton();
     }
 
     public void tiltValidation(KeyEvent keyEvent) {
         tiltAngle = service.stringToFloatConverterValidator(tilt);
-        checkParams();
+        checkParamsToManageNextButton();
     }
 
     public void selectionDone(ActionEvent actionEvent) {
@@ -265,7 +265,7 @@ public class Controller2 implements Initializable {
         if (styleClass.contains("error")){
             styleClass.remove("error");
         }
-        checkParams();
+        checkParamsToManageNextButton();
     }
 
 
@@ -276,7 +276,6 @@ public class Controller2 implements Initializable {
     public void showDiamFig(MouseEvent mouseEvent) {
         image.setImage(diameterFig);
     }
-
 
     public void showBallMillFig(MouseEvent mouseEvent) {
         image.setImage(ballMillFif);
@@ -307,9 +306,11 @@ public class Controller2 implements Initializable {
     }
 
     public void showDownMillingFig(MouseEvent mouseEvent) {
+        image.setImage(upMillingFig);
     }
 
     public void showUpMillingFig(MouseEvent mouseEvent) {
+        image.setImage(downMillingFig);
     }
 
     public void showTiltFig(MouseEvent mouseEvent) {
