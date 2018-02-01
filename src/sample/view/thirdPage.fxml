@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+<?language javascript?>
+
+<GridPane fx:id="condition" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller2">
+
+    <padding>
+        <Insets bottom="25.0" left="15.0" right="0" top="15.0" />
+    </padding>
+
+    <ImageView fx:id="image" fitHeight="300" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+
+    <GridPane alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+
+        <padding>
+            <Insets bottom="25.0" left="15.0" right="25.0" top="15.0" />
+        </padding>
+
+        <Text id="welcome-text" text="Part characteristics" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+
+        <TextField GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+        <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="select" onAction="#handleSubmitButtonActionSelect" text="Select" />
+        </HBox>
+
+
+        <TextField fx:id="radius" onKeyReleased="#radiusValidation" onMouseClicked="#showRadiusFig" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <RadioButton fx:id="selectOption" onMouseClicked="#showUpMillingFig" selected="true" text="Select directory to part's FRF signal" userData="222" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <toggleGroup>
+                <ToggleGroup fx:id="toggleGroupFeed" />
+            </toggleGroup>
+            <GridPane.margin>
+                <Insets />
+            </GridPane.margin>
+        </RadioButton>
+        <RadioButton fx:id="fillOption" onMouseClicked="#showDownMillingFig" selected="false" text="Fill part's characteristics manually" toggleGroup="$toggleGroupFeed" userData="222" GridPane.rowIndex="3" />
+
+
+        <Label text="Natural frequency, Hz" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="nat_frequency" onKeyReleased="#frequencyValidation" onMouseClicked="#showFrequencyFig" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+
+        <Label text="Stiffness, N/mm2" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <TextField fx:id="stiffness" onKeyReleased="#stffnessValidation" onMouseClicked="#showStifnessFig" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+
+        <Label text="Damping ratio" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <TextField fx:id="damping" onKeyReleased="#dampingValidation" onMouseClicked="#showDampingFig" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="7">
+            <Button fx:id="next" onAction="#handleSubmitButtonActionNext" text="Next" />
+
+        </HBox>
+        <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
+
+            <Button fx:id="cancel" onAction="#handleSubmitButtonAction1" text="Cancel" />
+        </HBox>
+
+
+        <columnConstraints>
+            <ColumnConstraints prefWidth="350.0" />
+            <ColumnConstraints prefWidth="70.0" />
+        </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+
+    </GridPane>
+
+
+    <stylesheets>
+        <URL value="@../style/Login.css" />
+    </stylesheets>
+    <columnConstraints>
+        <ColumnConstraints prefWidth="300.0" />
+        <ColumnConstraints minWidth="520.0" prefWidth="520.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

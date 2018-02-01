@@ -200,7 +200,7 @@ public class Controller2 implements Initializable {
         }
 
         Scene scene = new Scene(lineChart, 1240, 800);
-        scene.getStylesheets().add("sample/Chart2.css");
+        scene.getStylesheets().add("sample/style/Chart2.css");
         lineChart.getData().add(series);
 
 
