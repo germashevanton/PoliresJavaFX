@@ -1,4 +1,4 @@
-package sample;
+package sample.Service;
 
 
 public class ToolContact {

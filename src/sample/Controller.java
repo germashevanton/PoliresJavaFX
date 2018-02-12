@@ -13,7 +13,7 @@ public class Controller {
 
 
 
-    public static Stage stage = new Stage();
+    public static Stage stageSecondPage = new Stage();
 
     public void handleContouringMilling(ActionEvent actionEvent) {
 
@@ -25,12 +25,12 @@ public class Controller {
         }
 
 
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene = new Scene(root, 950, 600);
         scene.getStylesheets().add("sample/style/error.css");
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("images/medical-cnc.jpg")));
-        stage.setTitle("Advanced Cutting v1.1");
-        stage.setScene(scene);
-        stage.show();
+        stageSecondPage.getIcons().add(new Image(getClass().getResourceAsStream("images/medical-cnc.jpg")));
+        stageSecondPage.setTitle("Advanced Cutting v1.1");
+        stageSecondPage.setScene(scene);
+        stageSecondPage.show();
 
 
     }

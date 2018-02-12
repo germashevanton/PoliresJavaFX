@@ -132,7 +132,7 @@
     </stylesheets>
     <columnConstraints>
         <ColumnConstraints prefWidth="300.0" />
-        <ColumnConstraints minWidth="520.0" prefWidth="520.0" />
+        <ColumnConstraints minWidth="570.0" prefWidth="520.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />

@@ -1,4 +1,4 @@
-package sample;
+package sample.Service;
 
 /**
  * Created by Anton on 17.01.2018.

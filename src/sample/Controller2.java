@@ -3,7 +3,9 @@ package sample;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -15,16 +17,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.Service.Materials;
-import sample.Service.Service;
+import sample.Service.*;
 
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static sample.Controller.stage;
+import static sample.Controller.stageSecondPage;
 
 /**
  * Created by Anton on 11.01.2018.
@@ -54,6 +56,7 @@ public class Controller2 implements Initializable {
     Image downMillingFig = new Image(getClass().getResourceAsStream("images/down_milling.png"));
 
     //FXML Elements
+    public static Stage stageThirdPage;
     @FXML
     public ImageView image;
     @FXML
@@ -125,7 +128,7 @@ public class Controller2 implements Initializable {
 
     @FXML
     protected void handleSubmitButtonAction1(ActionEvent event) {
-        stage.close();
+        stageSecondPage.close();
     }
 
     @FXML
@@ -168,7 +171,29 @@ public class Controller2 implements Initializable {
             }
         }
 
-        double contactAngle = toolContact.cuttingPeriod(dMill, ae, ft, w, ap);
+        Controller.stageSecondPage.close();
+
+
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("view/thirdPage.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        Scene scene = new Scene(root, 950, 600);
+        scene.getStylesheets().add("sample/style/error.css");
+
+        stageThirdPage = new Stage();
+        stageThirdPage.getIcons().add(new Image(getClass().getResourceAsStream("images/medical-cnc.jpg")));
+        stageThirdPage.setTitle("Advanced Cutting v1.1");
+        stageThirdPage.setScene(scene);
+        stageThirdPage.show();
+
+
+
+        /*double contactAngle = toolContact.cuttingPeriod(dMill, ae, ft, w, ap);
 
         double fMax = forceCalculation.forceCalc(2400, 60, ft, startAngle, ap);
 
@@ -205,7 +230,7 @@ public class Controller2 implements Initializable {
 
 
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
     }
 
 
@@ -224,41 +249,49 @@ public class Controller2 implements Initializable {
         checkParamsToManageNextButton();
     }
 
+    @FXML
     public void radiusValidation(KeyEvent keyEvent) {
         r = service.stringToFloatConverterValidator(radius);
         checkParamsToManageNextButton();
     }
 
+    @FXML
     public void halexValidation(KeyEvent keyEvent) {
         w = service.stringToFloatConverterValidator(halex);
         checkParamsToManageNextButton();
     }
 
+    @FXML
     public void ntValidation(KeyEvent keyEvent) {
         nt = service.stringToIntConverterValidator(teeth_number);
         checkParamsToManageNextButton();
     }
 
+    @FXML
     public void apValidation(KeyEvent keyEvent) {
         ap = service.stringToFloatConverterValidator(axial_depth);
         checkParamsToManageNextButton();
     }
 
+    @FXML
     public void aeValidation(KeyEvent keyEvent) {
         ae = service.stringToFloatConverterValidator(radial_depth);
         checkParamsToManageNextButton();
     }
 
+    @FXML
     public void feedValidation(KeyEvent keyEvent) {
         ft = service.stringToFloatConverterValidator(feed);
         checkParamsToManageNextButton();
     }
 
+    @FXML
     public void tiltValidation(KeyEvent keyEvent) {
         tiltAngle = service.stringToFloatConverterValidator(tilt);
         checkParamsToManageNextButton();
     }
 
+    @FXML
     public void selectionDone(ActionEvent actionEvent) {
         processingMaterial.getSelectionModel().getSelectedItem().toString();
         ObservableList<String> styleClass = processingMaterial.getStyleClass();
