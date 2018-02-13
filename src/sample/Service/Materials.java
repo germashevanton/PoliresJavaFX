@@ -17,7 +17,11 @@ public class Materials {
             "Ti (6Al, 4 V)",
             "Al 7075-T6",
             "Al 6061-T6");
+
+    public ObservableList<String> machineToolList = FXCollections.observableArrayList("Huron CX5", "Hermle C50", "DMU50");
 }
+
+
 
 
 /* private ObservableList<Material> materials = FXCollections.observableArrayList(
@@ -32,3 +36,4 @@ public class Materials {
             new Material(200, "Ti (6Al, 4 V)"),
             new Material(200, "Al 7075-T6"),
             new Material(200, "Al 6061-T6"));*/
+

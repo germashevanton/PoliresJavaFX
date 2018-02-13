@@ -23,6 +23,7 @@
     </padding>
 
     <ImageView fx:id="image" fitHeight="300" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <Text fx:id="textInformation" wrappingWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
 
     <GridPane alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
@@ -92,7 +93,7 @@
                 <Insets />
             </GridPane.margin>
         </RadioButton>
-        <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMashinetool" selected="false" text="Fill machinetool characteristics manually" toggleGroup="$toggleGroupFeed" userData="222" GridPane.rowIndex="3" />
+        <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMashinetool" selected="false" text="Fill machinetool characteristics manually" toggleGroup="$toggleGroupMachineTool" userData="222" GridPane.rowIndex="3" />
 
         <GridPane fx:id="machineToolSelect" alignment="center" hgap="15.0" styleClass="root" GridPane.columnIndex="0" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 
