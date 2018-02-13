@@ -23,7 +23,7 @@
     </padding>
 
     <ImageView fx:id="image" fitHeight="300" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <Text fx:id="textInformation" wrappingWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Text fx:id="textInformation" wrappingWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
 
     <GridPane alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
@@ -35,7 +35,7 @@
         <Text id="welcome-text" text="Part characteristics" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
 
-        <TextField fx:id="path" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="path" onKeyReleased="#pathValidation" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <Button fx:id="select" onAction="#handleSubmitButtonActionSelect" text="Select" />
         </HBox>
@@ -55,7 +55,7 @@
 
 
         <Label text="Stiffness, N/mm2" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-        <TextField fx:id="stiffness" onKeyReleased="#stffnessValidation" onMouseClicked="#showStifnessFig" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <TextField fx:id="stiffness" onKeyReleased="#stiffnessValidation" onMouseClicked="#showStifnessFig" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
 
         <Label text="Damping ratio" GridPane.columnIndex="0" GridPane.rowIndex="6" />

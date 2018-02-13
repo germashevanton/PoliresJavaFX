@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,16 +12,28 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import sample.Service.Materials;
+import sample.Service.Service;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static sample.Controller2.stageThirdPage;
 
 public class Controller3 implements Initializable {
+
     //Objects
     Materials machineToolList = new Materials();
+    Service service = new Service();
+
+    // fields
+    private String filePath;
+    private float frequency;
+    private float partStiffness;
+    private float dampingRatio;
+    private  String machineTool;
+    private int maxSpindleSpeed;
 
     //FXML elements
     public ImageView image;
@@ -43,19 +56,7 @@ public class Controller3 implements Initializable {
         fileChooser.setTitle("Open Resource File");
         File selectedFile = fileChooser.showOpenDialog(stageThirdPage);
         path.setText(selectedFile.toString());
-    }
-
-
-    public void frequencyValidation(KeyEvent keyEvent) {
-    }
-
-    public void stffnessValidation(KeyEvent keyEvent) {
-    }
-
-    public void dampingValidation(KeyEvent keyEvent) {
-    }
-
-    public void selectionMachineToolDone(ActionEvent actionEvent) {
+        service.filePathValidator(path);
     }
 
     public void handleSubmitButtonActionBack(ActionEvent actionEvent) {
@@ -71,7 +72,7 @@ public class Controller3 implements Initializable {
     }
 
     public void disableManualFilling(ActionEvent actionEvent) {
-        textInformation.setText("Chose file with detail response to determine characteristic of the detail and Frequency Response Function");
+        textInformation.setText("Chose file with the response signal to determine characteristic of the detail and Frequency Response Function");
         path.setDisable(false);
         select.setDisable(false);
         nat_frequency.setDisable(true);
@@ -92,12 +93,18 @@ public class Controller3 implements Initializable {
         textInformation.setText("Select machine tool from the list to determine its characteristics and spindle speed range of the calculation");
         spindleSpeed.setDisable(true);
         machineToolType.setDisable(false);
+        if (machineTool == null){
+            machineToolType.getStyleClass().add("error");
+        }
+        spindleSpeed.getStyleClass().remove("error");
     }
 
     public void disableAutoSelectionMashinetool(ActionEvent actionEvent) {
         textInformation.setText("Put maximum spindle speed of the machine tool to determine range of calculation");
         machineToolType.setDisable(true);
         spindleSpeed.setDisable(false);
+        service.stringToIntConverterValidator(spindleSpeed);
+        machineToolType.getStyleClass().remove("error");
     }
 
     @Override
@@ -105,5 +112,60 @@ public class Controller3 implements Initializable {
         disableManualFilling(new ActionEvent());
         machineToolType.setItems(machineToolList.machineToolList);
         spindleSpeed.setDisable(true);
+
+        Field[] fields = getClass().getDeclaredFields();
+        Object object = this;
+        for (Field field : fields) {
+            if (field.getType().getName().equals("javafx.scene.control.TextField")) {
+                TextField textField = null;
+
+                try {
+                    textField = (TextField) field.get(object);
+                }
+                catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                if (textField != null && !textField.isDisable()) {
+                    textField.getStyleClass().add("error");
+                }
+            } else if(field.getType().getName().equals("javafx.scene.control.ComboBox")){
+                ComboBox comboBox = null;
+                try {
+                    comboBox = (ComboBox) field.get(object);
+                }
+                catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                if (comboBox != null && !comboBox.isDisable()) {
+                    comboBox.getStyleClass().add("error");
+                }
+            }
+        }
+    }
+
+    //Validate fields
+    public void pathValidation(KeyEvent keyEvent) {
+        filePath = service.filePathValidator(path);
+    }
+
+    public void spindleSpeedValidation(KeyEvent keyEvent) {
+        maxSpindleSpeed = service.stringToIntConverterValidator(spindleSpeed);
+    }
+
+    public void frequencyValidation(KeyEvent keyEvent) {
+        frequency = service.stringToFloatConverterValidator(nat_frequency);
+    }
+
+    public void stiffnessValidation(KeyEvent keyEvent) {
+        partStiffness = service.stringToFloatConverterValidator(stiffness);
+    }
+
+    public void dampingValidation(KeyEvent keyEvent) {
+        dampingRatio = service.stringToFloatConverterValidator(damping);
+    }
+
+    public void selectionMachineToolDone(ActionEvent actionEvent) {
+        machineToolType.getStyleClass().remove("error");
+        machineTool =  machineToolType.getSelectionModel().getSelectedItem().toString();
     }
 }

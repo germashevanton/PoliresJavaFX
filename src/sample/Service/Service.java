@@ -4,6 +4,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 
+import java.io.File;
+
 public class Service {
 
     public float stringToFloatConverterValidator(TextField textField){
@@ -39,6 +41,19 @@ public class Service {
                 System.out.println(styleClass.toString());
             }
             return -1;
+        }
+    }
+
+    public String filePathValidator(TextField path){
+        ObservableList<String> styleClass = path.getStyleClass();
+        if (new File(path.getText()).isFile()){
+            styleClass.remove("error");
+            return path.getText();
+        } else {
+            if(!styleClass.contains("error")){
+                styleClass.add("error");
+            }
+            return null;
         }
     }
 }

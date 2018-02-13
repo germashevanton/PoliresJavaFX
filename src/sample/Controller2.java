@@ -243,6 +243,7 @@ public class Controller2 implements Initializable {
         }
     }
 
+    //validate input fields
     @FXML
     protected void diameterValidation(KeyEvent event){
         dMill = service.stringToFloatConverterValidator(diameter);
