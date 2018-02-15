@@ -38,7 +38,7 @@ public class Service {
             textField.setTooltip(new Tooltip("Invalid input data"));
             if (!styleClass.contains("error")){
                 styleClass.add("error");
-                System.out.println(styleClass.toString());
+                //System.out.println(styleClass.toString());
             }
             return -1;
         }
@@ -54,6 +54,13 @@ public class Service {
                 styleClass.add("error");
             }
             return null;
+        }
+    }
+
+    public void checkFieldNotNull(TextField textField) {
+        ObservableList<String> styleClass = textField.getStyleClass();
+        if (textField.getText() == null && !styleClass.contains("error")) {
+            styleClass.add("error");
         }
     }
 }

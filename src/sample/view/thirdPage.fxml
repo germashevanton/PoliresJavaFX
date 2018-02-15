@@ -40,15 +40,15 @@
             <Button fx:id="select" onAction="#handleSubmitButtonActionSelect" text="Select" />
         </HBox>
 
-        <RadioButton fx:id="selectDetailCharacteristicOption" onAction="#disableManualFilling" selected="true" text="Select directory to part's FRF signal" userData="222" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+        <RadioButton fx:id="selectDetailCharacteristicOption" onAction="#disableManualFilling" selected="true" text="Select directory to part's FRF signal" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
             <toggleGroup>
-                <ToggleGroup fx:id="toggleGroupFeed" />
+                <ToggleGroup fx:id="toggleGroupSelectFrfFile"/>
             </toggleGroup>
             <GridPane.margin>
                 <Insets />
             </GridPane.margin>
         </RadioButton>
-        <RadioButton fx:id="fillDetailCharacteristicOption" onAction="#disableSignalSelection" selected="false" text="Fill part's characteristics manually" toggleGroup="$toggleGroupFeed" userData="222" GridPane.rowIndex="3" />
+        <RadioButton fx:id="fillDetailCharacteristicOption" onAction="#disableSignalSelection" selected="false" text="Fill part's characteristics manually" toggleGroup="$toggleGroupSelectFrfFile" userData="Manual" GridPane.rowIndex="3" />
 
         <Label prefWidth="135.0" text="Natural frequency, Hz" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         <TextField fx:id="nat_frequency" onKeyReleased="#frequencyValidation" onMouseClicked="#showFrequencyFig" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -85,7 +85,7 @@
 
         <Text id="welcome-text" text="Machine-tool" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-        <RadioButton fx:id="selectMachineTool" onAction="#disableManualSelectionMashinetool" selected="true" text="Select machinetool" userData="222" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+        <RadioButton fx:id="selectMachineTool" onAction="#disableManualSelectionMashinetool" selected="true" text="Select machinetool" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
             <toggleGroup>
                 <ToggleGroup fx:id="toggleGroupMachineTool" />
             </toggleGroup>
@@ -93,7 +93,7 @@
                 <Insets />
             </GridPane.margin>
         </RadioButton>
-        <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMashinetool" selected="false" text="Fill machinetool characteristics manually" toggleGroup="$toggleGroupMachineTool" userData="222" GridPane.rowIndex="3" />
+        <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMashinetool" selected="false" text="Fill machinetool characteristics manually" toggleGroup="$toggleGroupMachineTool" userData="Manual" GridPane.rowIndex="3" />
 
         <GridPane fx:id="machineToolSelect" alignment="center" hgap="15.0" styleClass="root" GridPane.columnIndex="0" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 
