@@ -85,7 +85,7 @@
 
         <Text id="welcome-text" text="Machine-tool" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-        <RadioButton fx:id="selectMachineTool" onAction="#disableManualSelectionMashinetool" selected="true" text="Select machinetool" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+        <RadioButton fx:id="selectMachineTool" onAction="#disableManualSelectionMachineTool" selected="true" text="Select machinetool" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
             <toggleGroup>
                 <ToggleGroup fx:id="toggleGroupMachineTool" />
             </toggleGroup>
@@ -93,7 +93,7 @@
                 <Insets />
             </GridPane.margin>
         </RadioButton>
-        <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMashinetool" selected="false" text="Fill machinetool characteristics manually" toggleGroup="$toggleGroupMachineTool" userData="Manual" GridPane.rowIndex="3" />
+        <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMachineTool" selected="false" text="Fill machinetool characteristics manually" toggleGroup="$toggleGroupMachineTool" userData="Manual" GridPane.rowIndex="3" />
 
         <GridPane fx:id="machineToolSelect" alignment="center" hgap="15.0" styleClass="root" GridPane.columnIndex="0" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 

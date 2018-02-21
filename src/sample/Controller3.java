@@ -27,11 +27,11 @@ public class Controller3 implements Initializable {
 
     // fields
     private String filePath;
-    private float frequency;
-    private float partStiffness;
-    private float dampingRatio;
+    private float frequency = -1;
+    private float partStiffness = -1;
+    private float dampingRatio = -1;
     private  String machineTool;
-    private int maxSpindleSpeed;
+    private int maxSpindleSpeed = -1;
 
     //FXML elements
     public ToggleGroup toggleGroupMachineTool;
@@ -57,7 +57,9 @@ public class Controller3 implements Initializable {
         fileChooser.setTitle("Open Resource File");
         File selectedFile = fileChooser.showOpenDialog(stageThirdPage);
         path.setText(selectedFile.toString());
+        //Validate
         service.filePathValidator(path);
+        checkParamsToManageNextButton();
     }
 
     public void handleSubmitButtonActionBack(ActionEvent actionEvent) {
@@ -89,6 +91,7 @@ public class Controller3 implements Initializable {
         // check params
         service.checkFieldNotNull(path);
         service.filePathValidator(path);
+        checkParamsToManageNextButton();
     }
 
     public void disableSignalSelection(ActionEvent actionEvent) {
@@ -110,24 +113,38 @@ public class Controller3 implements Initializable {
         service.stringToFloatConverterValidator(nat_frequency);
         service.stringToFloatConverterValidator(stiffness);
         service.stringToFloatConverterValidator(damping);
+        checkParamsToManageNextButton();
     }
 
-    public void disableManualSelectionMashinetool(ActionEvent actionEvent) {
+    public void disableManualSelectionMachineTool(ActionEvent actionEvent) {
+        // show text
         textInformation.setText("Select machine tool from the list to determine its characteristics and spindle speed range of the calculation");
+        // disable
         spindleSpeed.setDisable(true);
+        //activate
         machineToolType.setDisable(false);
+        // remove error from opposite check box
         if (machineTool == null){
             machineToolType.getStyleClass().add("error");
         }
         spindleSpeed.getStyleClass().remove("error");
+        //check params
+        checkParamsToManageNextButton();
     }
 
-    public void disableAutoSelectionMashinetool(ActionEvent actionEvent) {
+    public void disableAutoSelectionMachineTool(ActionEvent actionEvent) {
+        // show text
         textInformation.setText("Put maximum spindle speed of the machine tool to determine range of calculation");
+        // disable
         machineToolType.setDisable(true);
+        //activate
         spindleSpeed.setDisable(false);
-        service.stringToIntConverterValidator(spindleSpeed);
+        // remove error from opposite check box
         machineToolType.getStyleClass().remove("error");
+        //check params
+        service.stringToIntConverterValidator(spindleSpeed);
+        checkParamsToManageNextButton();
+
     }
 
     @Override
@@ -203,7 +220,7 @@ public class Controller3 implements Initializable {
         String toggleSelectFRF = toggleGroupSelectFrfFile.getSelectedToggle().getUserData().toString();
         String toggleSelectMachineTool = toggleGroupMachineTool.getSelectedToggle().getUserData().toString();
         if(((frequency != -1 && partStiffness != -1 && dampingRatio != -1 && toggleSelectFRF.equals("Manual"))
-                || (toggleSelectFRF.equals("Auto") && path.getText().isEmpty() )) && //////////////////////////
+                || (toggleSelectFRF.equals("Auto") && new File(path.getText()).isFile())) &&
                 (machineTool != null && toggleSelectMachineTool.equals("Auto"))
                 || maxSpindleSpeed != -1 && toggleSelectMachineTool.equals("Manual")){
             next.setDisable(false);
