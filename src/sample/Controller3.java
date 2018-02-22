@@ -24,6 +24,7 @@ public class Controller3 implements Initializable {
     //Objects
     Materials machineToolList = new Materials();
     Service service = new Service();
+    Controller2 controller2Instance = Controller2.getInstance();
 
     // fields
     private String filePath;
@@ -68,6 +69,7 @@ public class Controller3 implements Initializable {
     }
 
     public void handleSubmitButtonActionNext(ActionEvent actionEvent) {
+        controller2Instance.buildChart(frequency, partStiffness, dampingRatio, maxSpindleSpeed);
     }
 
     public void handleSubmitButtonActionCancel(ActionEvent actionEvent) {

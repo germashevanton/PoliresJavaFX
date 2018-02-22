@@ -32,6 +32,11 @@ import static sample.Controller.stageSecondPage;
  * Created by Anton on 11.01.2018.
  */
 public class Controller2 implements Initializable {
+    // Singleton
+    private static Controller2 instance = new Controller2();
+    public static Controller2 getInstance(){
+        return instance;
+    }
 
 
 
@@ -97,6 +102,7 @@ public class Controller2 implements Initializable {
     private float tiltAngle = -1;
     private float ks; //specific force coefficient
     private float beta; //cutting force angle
+    private double startAngle;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -155,7 +161,7 @@ public class Controller2 implements Initializable {
 
 
 
-        double startAngle = toolContact.startAngle(dMill, ae, ft, w, ap);
+        startAngle = toolContact.startAngle(dMill, ae, ft, w, ap);
 
 
         // Check contact angle  
@@ -349,5 +355,49 @@ public class Controller2 implements Initializable {
 
     public void showTiltFig(MouseEvent mouseEvent) {
         image.setImage(tiltFig);
+    }
+
+    // Build chart of poliresonance
+    public void buildChart(double natFrequency, double stiffness, double dampRatio, int maxSpindleSpeed){
+        double contactAngle = toolContact.cuttingPeriod(dMill, ae, ft, w, ap);
+
+        double fMax = forceCalculation.forceCalc(2400, 60, ft, startAngle, ap);
+
+        polires.foruerCoefCalc(102, nt, contactAngle);
+        polires.poliresCalc(natFrequency, dampRatio, fMax, stiffness, nt, maxSpindleSpeed);
+        double[] f = polires.getF();
+        double[] v = polires.getWwSpeed();
+
+        Stage stage = new Stage();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("images/medical-cnc.jpg")));
+        stage.setTitle("Amplitude - frequency characteristic");
+        //defining the axes
+        final NumberAxis xAxis = new NumberAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        xAxis.setLabel("Spindle speed, rpm");
+        yAxis.setLabel("Amplitude, ");
+        //creating the chart
+        final LineChart<Number, Number> lineChart =
+                new LineChart<Number, Number>(xAxis, yAxis);
+
+        lineChart.setTitle("Poliresonanse");
+        //defining a series
+        XYChart.Series series = new XYChart.Series();
+        series.setName("z = 6");
+        //populating the series with data
+
+        for (int i = 0; i < f.length; i++) {
+            series.getData().add(new XYChart.Data(v[i], f[i]));
+        }
+
+        XYChart.Series chatter = new XYChart.Series(); ////
+
+        Scene scene = new Scene(lineChart, 1240, 800);
+        scene.getStylesheets().add("sample/style/Chart2.css");
+        lineChart.getData().add(series);
+
+
+        stage.setScene(scene);
+        stage.show();
     }
 }

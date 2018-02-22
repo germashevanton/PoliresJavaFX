@@ -42,7 +42,7 @@ public class Polires {
         }
     }
 
-    public void poliresCalc(double natFreq, double dampRatio, double fMax, double stifness, int teethNumber) {
+    public void poliresCalc(double natFreq, double dampRatio, double fMax, double stifness, int teethNumber, int maxSpindleSpeed) {
 
         double wmin = 0;
         double w0 = natFreq * 2 * Math.PI;
@@ -70,7 +70,7 @@ public class Polires {
             f[i] = Math.sqrt(sum) / (mass * 1000) * 1000000;
             wwSpeed[i] = ww[i] * 60 / 2 / Math.PI;
             System.out.println(i);
-            if (wwSpeed[i] > 10000) break;
+            if (wwSpeed[i] > maxSpindleSpeed) break;
 
 
         }
