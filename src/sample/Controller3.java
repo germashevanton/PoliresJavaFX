@@ -1,7 +1,9 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -11,6 +13,7 @@ import sample.Service.Materials;
 import sample.Service.Service;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,6 +54,20 @@ public class Controller3 implements Initializable {
     public TextField stiffness;
     public TextField damping;
     public Text textInformation;
+    private Controller2 controller2;
+
+    private void some()  {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/sample.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        controller2 = Controller2.loader.getController();
+        Parent root = Controller2.stageThirdPage.getScene().getRoot();
+
+    }
 
 
     public void handleSubmitButtonActionSelect(ActionEvent actionEvent) {
@@ -69,7 +86,9 @@ public class Controller3 implements Initializable {
     }
 
     public void handleSubmitButtonActionNext(ActionEvent actionEvent) {
-        controller2Instance.buildChart(frequency, partStiffness, dampingRatio, maxSpindleSpeed);
+        //controller2Instance.buildChart(frequency, partStiffness, dampingRatio, maxSpindleSpeed);
+        some();
+        controller2.buildChart(frequency, partStiffness, dampingRatio, maxSpindleSpeed);
     }
 
     public void handleSubmitButtonActionCancel(ActionEvent actionEvent) {

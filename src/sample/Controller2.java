@@ -38,13 +38,12 @@ public class Controller2 implements Initializable {
         return instance;
     }
 
-
-
     Service service = new Service();
     Materials materials = new Materials();
     ToolContact toolContact = new ToolContact();
     Polires polires = new Polires();
     ForceCalculation forceCalculation = new ForceCalculation();
+    ChatterBorder chatterBorder = new ChatterBorder();
 
     //Images
     Image diameterFig = new Image(getClass().getResourceAsStream("images/d_mill.png"));
@@ -62,6 +61,7 @@ public class Controller2 implements Initializable {
 
     //FXML Elements
     public static Stage stageThirdPage;
+    public static FXMLLoader loader = new FXMLLoader();
     @FXML
     public ImageView image;
     @FXML
@@ -182,7 +182,7 @@ public class Controller2 implements Initializable {
 
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("view/thirdPage.fxml"));
+            root = loader.load(getClass().getResource("view/thirdPage.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -390,11 +390,17 @@ public class Controller2 implements Initializable {
             series.getData().add(new XYChart.Data(v[i], f[i]));
         }
 
+        double chatterSpeed = chatterBorder.chatterBorderSpindleSpeed(natFrequency, contactAngle);
         XYChart.Series chatter = new XYChart.Series(); ////
+        chatter.setName("chatter border");
+        chatter.getData().add(new XYChart.Data(0, chatterSpeed ));
+        chatter.getData().add(new XYChart.Data(100, chatterSpeed ));
+
 
         Scene scene = new Scene(lineChart, 1240, 800);
         scene.getStylesheets().add("sample/style/Chart2.css");
         lineChart.getData().add(series);
+        //lineChart.getData().add(chatter);
 
 
         stage.setScene(scene);
