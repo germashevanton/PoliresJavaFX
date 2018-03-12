@@ -40,7 +40,7 @@
             <Button fx:id="select" onAction="#handleSubmitButtonActionSelect" text="Select" />
         </HBox>
 
-        <RadioButton fx:id="selectDetailCharacteristicOption" onAction="#disableManualFilling" selected="true" text="Select directory to part's FRF signal" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+        <RadioButton fx:id="selectDetailCharacteristicOption" onMouseClicked="#showFrfFig" onAction="#disableManualFilling" selected="true" text="Select directory to part's FRF signal" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
             <toggleGroup>
                 <ToggleGroup fx:id="toggleGroupSelectFrfFile"/>
             </toggleGroup>
@@ -48,7 +48,7 @@
                 <Insets />
             </GridPane.margin>
         </RadioButton>
-        <RadioButton fx:id="fillDetailCharacteristicOption" onAction="#disableSignalSelection" selected="false" text="Fill part's characteristics manually" toggleGroup="$toggleGroupSelectFrfFile" userData="Manual" GridPane.rowIndex="3" />
+        <RadioButton fx:id="fillDetailCharacteristicOption" onMouseClicked="#showCalcFig" onAction="#disableSignalSelection" selected="false" text="Fill part's characteristics manually" toggleGroup="$toggleGroupSelectFrfFile" userData="Manual" GridPane.rowIndex="3" />
 
         <Label prefWidth="135.0" text="Natural frequency, Hz" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         <TextField fx:id="nat_frequency" onKeyReleased="#frequencyValidation" onMouseClicked="#showFrequencyFig" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -85,7 +85,7 @@
 
         <Text id="welcome-text" text="Machine-tool" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-        <RadioButton fx:id="selectMachineTool" onAction="#disableManualSelectionMachineTool" selected="true" text="Select machinetool" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+        <RadioButton fx:id="selectMachineTool" onAction="#disableManualSelectionMachineTool" onMouseClicked="#showMachineToolFig" selected="true" text="Select machinetool" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
             <toggleGroup>
                 <ToggleGroup fx:id="toggleGroupMachineTool" />
             </toggleGroup>
@@ -94,12 +94,12 @@
             </GridPane.margin>
         </RadioButton>
         <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMachineTool" selected="false" text="Fill machinetool characteristics manually"
-                     toggleGroup="$toggleGroupMachineTool" userData="Manual" GridPane.rowIndex="3" onMouseClicked="#showMachinrToolFig"/>
+                     toggleGroup="$toggleGroupMachineTool" userData="Manual" GridPane.rowIndex="3" onMouseClicked="#showSpindleSpeedFig"/>
 
         <GridPane fx:id="machineToolSelect" alignment="center" hgap="15.0" styleClass="root" GridPane.columnIndex="0" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 
             <Label text="Machine-tool" GridPane.rowIndex="2" />
-            <ComboBox fx:id="machineToolType" onAction="#selectionMachineToolDone" prefWidth="230.0" promptText="choose" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="machineToolType" onMouseClicked="#showMachineToolFig" onAction="#selectionMachineToolDone" prefWidth="230.0" promptText="choose" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
             <columnConstraints>
                 <ColumnConstraints prefWidth="190.0" />
@@ -142,8 +142,6 @@
     </GridPane>
 
 
-
-
     <GridPane fx:id="control" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 
         <padding>
@@ -176,7 +174,7 @@
         <ColumnConstraints minWidth="570.0" prefWidth="520.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints prefHeight="300"/>
+        <RowConstraints minHeight="300" maxHeight="300"/>
       <RowConstraints />
       <RowConstraints />
     </rowConstraints>
