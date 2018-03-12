@@ -35,7 +35,7 @@ root {
 #milling_classical {
     -fx-text-fill: #000000;
     -fx-font-size: 33px;
-     -fx-background-image: url("images/2-Niagara-S638-MultiFlute-EndMill_Action.jpg");
+     -fx-background-image: url("images/milling_classical.jpg");
      -fx-background-size: 290px 160px;
      -fx-background-repeat: no-repeat;
      -fx-background-position: center;

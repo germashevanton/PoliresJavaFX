@@ -14,12 +14,13 @@ public class Controller {
 
 
     public static Stage stageSecondPage = new Stage();
+    public static FXMLLoader loader = new FXMLLoader();
 
     public void handleContouringMilling(ActionEvent actionEvent) {
 
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
+            root = loader.load(getClass().getResource("view/sample.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }

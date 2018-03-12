@@ -16,13 +16,13 @@
 <?import javafx.scene.text.Text?>
 <?language javascript?>
 
-<GridPane fx:id="condition" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller3">
+<GridPane fx:id="condition" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 
     <padding>
         <Insets bottom="0" left="15.0" right="0" top="15.0" />
     </padding>
 
-    <ImageView fx:id="image" fitHeight="300" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <ImageView fx:id="image" GridPane.halignment="CENTER" GridPane.fillHeight="300" GridPane.valignment="CENTER" fitHeight="300" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
     <Text fx:id="textInformation" wrappingWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
 
@@ -93,7 +93,8 @@
                 <Insets />
             </GridPane.margin>
         </RadioButton>
-        <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMachineTool" selected="false" text="Fill machinetool characteristics manually" toggleGroup="$toggleGroupMachineTool" userData="Manual" GridPane.rowIndex="3" />
+        <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMachineTool" selected="false" text="Fill machinetool characteristics manually"
+                     toggleGroup="$toggleGroupMachineTool" userData="Manual" GridPane.rowIndex="3" onMouseClicked="#showMachinrToolFig"/>
 
         <GridPane fx:id="machineToolSelect" alignment="center" hgap="15.0" styleClass="root" GridPane.columnIndex="0" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 
@@ -175,7 +176,7 @@
         <ColumnConstraints minWidth="570.0" prefWidth="520.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints />
+        <RowConstraints prefHeight="300"/>
       <RowConstraints />
       <RowConstraints />
     </rowConstraints>

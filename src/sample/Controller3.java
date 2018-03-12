@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import sample.Service.Materials;
@@ -23,19 +25,28 @@ import static sample.Controller2.stageThirdPage;
 public class Controller3 implements Initializable {
 
 
+    public Controller3 (Controller2 controller2){
+        this.controller2 = controller2;
+    }
 
     //Objects
     Materials machineToolList = new Materials();
     Service service = new Service();
-    Controller2 controller2Instance = Controller2.getInstance();
+    //Controller2 controller2Instance = Controller2.getInstance();
 
     // fields
     private String filePath;
-    private float frequency = -1;
-    private float partStiffness = -1;
-    private float dampingRatio = -1;
+    public float frequency = -1;
+    public float partStiffness = -1;
+    public float dampingRatio = -1;
     private  String machineTool;
-    private int maxSpindleSpeed = -1;
+    public int maxSpindleSpeed = -1;
+
+    // images
+    Image frequencyFig = new Image(getClass().getResourceAsStream("images/frequency.png"));
+    Image dampingFig = new Image(getClass().getResourceAsStream("images/damping.gif"));
+    Image stiffnessFig = new Image(getClass().getResourceAsStream("images/stiffness.png"));
+    Image machineToolFig = new Image(getClass().getResourceAsStream("images/machine_tool.png"));
 
     //FXML elements
     public ToggleGroup toggleGroupMachineTool;
@@ -64,8 +75,10 @@ public class Controller3 implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        controller2 = Controller2.loader.getController();
-        Parent root = Controller2.stageThirdPage.getScene().getRoot();
+        //controller2 = loader.getController();
+        //controller2 = Controller.loader.getController();
+        Parent root = Controller.stageSecondPage.getScene().getRoot();
+
 
     }
 
@@ -81,14 +94,15 @@ public class Controller3 implements Initializable {
     }
 
     public void handleSubmitButtonActionBack(ActionEvent actionEvent) {
-        Controller2.stageThirdPage.close();
+        Controller2.stageThirdPage.hide();
         Controller.stageSecondPage.show();
     }
 
     public void handleSubmitButtonActionNext(ActionEvent actionEvent) {
         //controller2Instance.buildChart(frequency, partStiffness, dampingRatio, maxSpindleSpeed);
-        some();
+        //some();
         controller2.buildChart(frequency, partStiffness, dampingRatio, maxSpindleSpeed);
+        //controller2.buildChartFromContr3();
     }
 
     public void handleSubmitButtonActionCancel(ActionEvent actionEvent) {
@@ -248,5 +262,24 @@ public class Controller3 implements Initializable {
         } else {
             next.setDisable(true);
         }
+    }
+
+    public void showFrequencyFig(MouseEvent mouseEvent) {
+        image.setImage(frequencyFig);
+    }
+
+    public void showStifnessFig(MouseEvent mouseEvent) {
+        image.setImage(stiffnessFig);
+    }
+
+    public void showDampingFig(MouseEvent mouseEvent) {
+        image.setImage(dampingFig);
+    }
+
+    public void showSpindleSpeedFig(MouseEvent mouseEvent) {
+    }
+
+    public void showMachinrToolFig(MouseEvent mouseEvent) {
+        image.setImage(machineToolFig);
     }
 }

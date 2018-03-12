@@ -33,10 +33,11 @@ import static sample.Controller.stageSecondPage;
  */
 public class Controller2 implements Initializable {
     // Singleton
-    private static Controller2 instance = new Controller2();
+    /*private static Controller2 instance = new Controller2();
     public static Controller2 getInstance(){
         return instance;
-    }
+    }*/
+    private Controller3 controller3 = new Controller3(this);
 
     Service service = new Service();
     Materials materials = new Materials();
@@ -61,7 +62,7 @@ public class Controller2 implements Initializable {
 
     //FXML Elements
     public static Stage stageThirdPage;
-    public static FXMLLoader loader = new FXMLLoader();
+
     @FXML
     public ImageView image;
     @FXML
@@ -177,12 +178,17 @@ public class Controller2 implements Initializable {
             }
         }
 
-        Controller.stageSecondPage.close();
 
 
+        Controller.stageSecondPage.hide();
+
+        //buildChart(700, 2400, 40, 10000);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/thirdPage.fxml"));
+        loader.setController(controller3);
         Parent root = null;
         try {
-            root = loader.load(getClass().getResource("view/thirdPage.fxml"));
+            root = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -196,47 +202,6 @@ public class Controller2 implements Initializable {
         stageThirdPage.setTitle("Advanced Cutting v1.1");
         stageThirdPage.setScene(scene);
         stageThirdPage.show();
-
-
-
-        /*double contactAngle = toolContact.cuttingPeriod(dMill, ae, ft, w, ap);
-
-        double fMax = forceCalculation.forceCalc(2400, 60, ft, startAngle, ap);
-
-        polires.foruerCoefCalc(102, nt, contactAngle);
-        polires.poliresCalc(700, 60, fMax, 2400, nt);
-        double[] f = polires.getF();
-        double[] v = polires.getWwSpeed();
-
-        Stage stage = new Stage();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("images/medical-cnc.jpg")));
-        stage.setTitle("Amplitude - frequency characteristic");
-        //defining the axes
-        final NumberAxis xAxis = new NumberAxis();
-        final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Spindle speed, rpm");
-        yAxis.setLabel("Amplitude, ");
-        //creating the chart
-        final LineChart<Number, Number> lineChart =
-                new LineChart<Number, Number>(xAxis, yAxis);
-
-        lineChart.setTitle("Poliresonanse");
-        //defining a series
-        XYChart.Series series = new XYChart.Series();
-        series.setName("z = 6");
-        //populating the series with data
-
-        for (int i = 0; i < f.length; i++) {
-            series.getData().add(new XYChart.Data(v[i], f[i]));
-        }
-
-        Scene scene = new Scene(lineChart, 1240, 800);
-        scene.getStylesheets().add("sample/style/Chart2.css");
-        lineChart.getData().add(series);
-
-
-        stage.setScene(scene);
-        stage.show();*/
     }
 
 
@@ -358,7 +323,14 @@ public class Controller2 implements Initializable {
     }
 
     // Build chart of poliresonance
+    public void buildChartFromContr3(){
+        buildChart(controller3.frequency, controller3.partStiffness, controller3.dampingRatio, controller3.maxSpindleSpeed);
+    }
+
+
     public void buildChart(double natFrequency, double stiffness, double dampRatio, int maxSpindleSpeed){
+
+        startAngle = toolContact.startAngle(dMill, ae, ft, w, ap);
         double contactAngle = toolContact.cuttingPeriod(dMill, ae, ft, w, ap);
 
         double fMax = forceCalculation.forceCalc(2400, 60, ft, startAngle, ap);
