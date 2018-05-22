@@ -24,9 +24,14 @@
                 onAction="#handleContouringMilling"/>
     </HBox>
 
-    <HBox spacing="10" alignment="center"
+    <!--<HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="2">
         <Button id="milling_classical" text="Classical milling" alignment="BOTTOM_CENTER"
+                onAction="#handleSubmitButtonAction"/>
+    </HBox>-->
+    <HBox spacing="10" alignment="center"
+          GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <Button id="milling_classical" alignment="BOTTOM_CENTER"
                 onAction="#handleSubmitButtonAction"/>
     </HBox>
 

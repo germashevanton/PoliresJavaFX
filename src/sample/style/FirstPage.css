@@ -2,13 +2,14 @@ root {
     display: block;
 }
 .root {
--fx-background-image: url("images/aluminumbulk01.jpg");
+/*-fx-background-image: url("images/aluminumbulk01.jpg");*/
 }
 
 #welcome-text {
    -fx-font-size: 30px;
    -fx-font-family: "Arial Black";
-   -fx-fill: linear-gradient(#0D9DF4, #0d1df4);
+   /*-fx-fill: linear-gradient(#0D9DF4, #0d1df4);*/
+   -fx-fill: #818181;
    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
 }
 #actiontarget {
@@ -35,7 +36,8 @@ root {
 #milling_classical {
     -fx-text-fill: #000000;
     -fx-font-size: 33px;
-     -fx-background-image: url("images/milling_classical.jpg");
+     /*-fx-background-image: url("images/milling_classical.jpg");*/
+     -fx-background-image: url("images/classical_milling.jpg");
      -fx-background-size: 290px 160px;
      -fx-background-repeat: no-repeat;
      -fx-background-position: center;
@@ -43,7 +45,8 @@ root {
     -fx-min-width: 300px;
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#0D9DF4, #0deef4);
+    /*-fx-background-color: linear-gradient(#0D9DF4, #0deef4);*/
+    -fx-background-color: #818181;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 

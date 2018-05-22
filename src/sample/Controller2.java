@@ -169,8 +169,8 @@ public class Controller2 implements Initializable {
         if ((180 - startAngle) > (360/nt)){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
-            alert.setHeaderText("Look, an Information Dialog");
-            alert.setContentText("I have a great message for you!");
+            alert.setHeaderText("Your cutting condition is not match this type of machining");
+            alert.setContentText("Change cutting condition or chose another machining type");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
@@ -335,7 +335,7 @@ public class Controller2 implements Initializable {
 
         double fMax = forceCalculation.forceCalc(2400, 60, ft, startAngle, ap);
 
-        polires.foruerCoefCalc(102, nt, contactAngle);
+        polires.foruerCoefCalc(202, nt, contactAngle);
         polires.poliresCalc(natFrequency, dampRatio, fMax, stiffness, nt, maxSpindleSpeed);
         double[] f = polires.getF();
         double[] v = polires.getWwSpeed();
@@ -352,10 +352,10 @@ public class Controller2 implements Initializable {
         final LineChart<Number, Number> lineChart =
                 new LineChart<Number, Number>(xAxis, yAxis);
 
-        lineChart.setTitle("Poliresonanse");
+        lineChart.setTitle("Part ampl, Tool: ball end, D = " + dMill + " mm, Nt = " + nt + ", Part: j = " + stiffness + " N/mm, Fnat = " + natFrequency + " Hz.");
         //defining a series
         XYChart.Series series = new XYChart.Series();
-        series.setName("z = 6");
+        //series.setName("z = 6");
         //populating the series with data
 
         for (int i = 0; i < f.length; i++) {
@@ -369,7 +369,7 @@ public class Controller2 implements Initializable {
         chatter.getData().add(new XYChart.Data(100, chatterSpeed ));
 
 
-        Scene scene = new Scene(lineChart, 1240, 800);
+        Scene scene = new Scene(lineChart, 1240, 700);
         scene.getStylesheets().add("sample/style/Chart2.css");
         lineChart.getData().add(series);
         //lineChart.getData().add(chatter);
