@@ -18,9 +18,14 @@
           GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="1"/>
 
-    <HBox spacing="10" alignment="center"
+    <!--<HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="1">
         <Button id="milling" text="Counturing milling" alignment="BOTTOM_CENTER"
+                onAction="#handleContouringMilling"/>
+    </HBox>-->
+    <HBox spacing="10" alignment="center"
+          GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <Button id="milling" alignment="BOTTOM_CENTER"
                 onAction="#handleContouringMilling"/>
     </HBox>
 
@@ -35,9 +40,14 @@
                 onAction="#handleSubmitButtonAction"/>
     </HBox>
 
-    <HBox spacing="10" alignment="center"
+    <!--<HBox spacing="10" alignment="center"
           GridPane.columnIndex="0" GridPane.rowIndex="3">
         <Button id="turning" text="Turning" alignment="BOTTOM_LEFT"
+                onAction="#handleSubmitButtonAction"/>
+    </HBox>-->
+    <HBox spacing="10" alignment="center"
+          GridPane.columnIndex="0" GridPane.rowIndex="3">
+        <Button id="turning" alignment="BOTTOM_LEFT"
                 onAction="#handleSubmitButtonAction"/>
     </HBox>
 

@@ -47,7 +47,7 @@ public class Controller2 implements Initializable {
     ChatterBorder chatterBorder = new ChatterBorder();
 
     //Images
-    Image diameterFig = new Image(getClass().getResourceAsStream("images/d_mill.png"));
+/*    Image diameterFig = new Image(getClass().getResourceAsStream("images/d_mill.png"));
     Image ftFig = new Image(getClass().getResourceAsStream("images/fz.png"));
     Image ntFig = new Image(getClass().getResourceAsStream("images/ft.png"));
     Image radiusFig = new Image(getClass().getResourceAsStream("images/radiuus_ball.png"));
@@ -59,6 +59,21 @@ public class Controller2 implements Initializable {
     Image tiltFig = new Image(getClass().getResourceAsStream("images/tilt.jpg"));
     Image upMillingFig = new Image(getClass().getResourceAsStream("images/up_milling.png"));
     Image downMillingFig = new Image(getClass().getResourceAsStream("images/down_milling.png"));
+    */
+
+    // new My images
+    Image diameterFig = new Image(getClass().getResourceAsStream("images/myImages/dmill.jpg"));
+    Image ftFig = new Image(getClass().getResourceAsStream("images/myImages/fz.jpg"));
+    Image ntFig = new Image(getClass().getResourceAsStream("images/ft.png"));
+    Image radiusFig = new Image(getClass().getResourceAsStream("images/myImages/ball_mill.jpg"));
+    Image apFig = new Image(getClass().getResourceAsStream("images/myImages/ap.jpg"));
+    Image aeFig = new Image(getClass().getResourceAsStream("images/myImages/ae.jpg"));
+    Image ballMillFif = new Image(getClass().getResourceAsStream("images/miil_radius.png"));
+    Image bullMillFig = new Image(getClass().getResourceAsStream("images/mill_bull.png"));
+    Image wFig = new Image(getClass().getResourceAsStream("images/myImages/w.jpg"));
+    Image tiltFig = new Image(getClass().getResourceAsStream("images/myImages/tilt.jpg"));
+    Image upMillingFig = new Image(getClass().getResourceAsStream("images/myImages/up_milling.jpg"));
+    Image downMillingFig = new Image(getClass().getResourceAsStream("images/myImages/down_milling.jpg"));
 
     //FXML Elements
     public static Stage stageThirdPage;
