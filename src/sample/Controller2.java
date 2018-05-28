@@ -64,11 +64,11 @@ public class Controller2 implements Initializable {
     // new My images
     Image diameterFig = new Image(getClass().getResourceAsStream("images/myImages/dmill.jpg"));
     Image ftFig = new Image(getClass().getResourceAsStream("images/myImages/fz.jpg"));
-    Image ntFig = new Image(getClass().getResourceAsStream("images/ft.png"));
+    Image ntFig = new Image(getClass().getResourceAsStream("images/myImages/z.jpg"));
     Image radiusFig = new Image(getClass().getResourceAsStream("images/myImages/ball_mill.jpg"));
     Image apFig = new Image(getClass().getResourceAsStream("images/myImages/ap.jpg"));
     Image aeFig = new Image(getClass().getResourceAsStream("images/myImages/ae.jpg"));
-    Image ballMillFif = new Image(getClass().getResourceAsStream("images/miil_radius.png"));
+    Image ballMillFif = new Image(getClass().getResourceAsStream("images/myImages/ball_mill.jpg"));
     Image bullMillFig = new Image(getClass().getResourceAsStream("images/mill_bull.png"));
     Image wFig = new Image(getClass().getResourceAsStream("images/myImages/w.jpg"));
     Image tiltFig = new Image(getClass().getResourceAsStream("images/myImages/tilt.jpg"));

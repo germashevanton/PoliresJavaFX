@@ -16,166 +16,210 @@
 <?import javafx.scene.text.Text?>
 <?language javascript?>
 
-<GridPane fx:id="condition" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="600" fx:id="condition" alignment="center" hgap="15.0" styleClass="root" vgap="10.0"
+          xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 
     <padding>
-        <Insets bottom="0" left="15.0" right="0" top="15.0" />
+        <Insets bottom="0" left="15.0" right="0" top="15.0"/>
     </padding>
 
-    <ImageView fx:id="image" GridPane.halignment="CENTER" GridPane.fillHeight="300" GridPane.valignment="CENTER" fitHeight="300" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <Text fx:id="textInformation" wrappingWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <!--right side-->
+    <GridPane alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="0"
+              GridPane.rowIndex="0">
+        <ImageView fx:id="image" GridPane.halignment="CENTER" GridPane.fillHeight="300" GridPane.valignment="CENTER"
+                   fitHeight="500" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0"
+                   GridPane.rowIndex="0"/>
+        <Text fx:id="textInformation" wrappingWidth="300" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
+        <rowConstraints>
 
-    <GridPane alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
-
-        <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-        </padding>
-
-        <Text id="welcome-text" text="Part characteristics" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-
-
-        <TextField fx:id="path" onKeyReleased="#pathValidation" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <Button fx:id="select" onAction="#handleSubmitButtonActionSelect" text="Select" />
-        </HBox>
-
-        <RadioButton fx:id="selectDetailCharacteristicOption" onMouseClicked="#showFrfFig" onAction="#disableManualFilling" selected="true" text="Select directory to part's FRF signal" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-            <toggleGroup>
-                <ToggleGroup fx:id="toggleGroupSelectFrfFile"/>
-            </toggleGroup>
-            <GridPane.margin>
-                <Insets />
-            </GridPane.margin>
-        </RadioButton>
-        <RadioButton fx:id="fillDetailCharacteristicOption" onMouseClicked="#showCalcFig" onAction="#disableSignalSelection" selected="false" text="Fill part's characteristics manually" toggleGroup="$toggleGroupSelectFrfFile" userData="Manual" GridPane.rowIndex="3" />
-
-        <Label prefWidth="135.0" text="Natural frequency, Hz" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-        <TextField fx:id="nat_frequency" onKeyReleased="#frequencyValidation" onMouseClicked="#showFrequencyFig" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-
-
-        <Label text="Stiffness, N/mm2" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-        <TextField fx:id="stiffness" onKeyReleased="#stiffnessValidation" onMouseClicked="#showStifnessFig" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-
-
-        <Label text="Damping ratio" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-        <TextField fx:id="damping" onKeyReleased="#dampingValidation" onMouseClicked="#showDampingFig" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-
-        <columnConstraints>
-            <ColumnConstraints prefWidth="350.0" />
-            <ColumnConstraints prefWidth="70.0" />
-        </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
+            <RowConstraints prefHeight="500.0"/>
+            <RowConstraints prefHeight="100.0"/>
+        </rowConstraints>
     </GridPane>
 
 
-    <GridPane fx:id="machineToolMenu" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 
-        <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-        </padding>
+    <!--left side-->
+    <GridPane alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1"
+              GridPane.rowIndex="0">
 
-        <Text id="welcome-text" text="Machine-tool" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <!--first part-->
+        <GridPane alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="0"
+                  GridPane.rowIndex="0">
 
-        <RadioButton fx:id="selectMachineTool" onAction="#disableManualSelectionMachineTool" onMouseClicked="#showMachineToolFig" selected="true" text="Select machinetool" userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-            <toggleGroup>
-                <ToggleGroup fx:id="toggleGroupMachineTool" />
-            </toggleGroup>
-            <GridPane.margin>
-                <Insets />
-            </GridPane.margin>
-        </RadioButton>
-        <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMachineTool" selected="false" text="Fill machinetool characteristics manually"
-                     toggleGroup="$toggleGroupMachineTool" userData="Manual" GridPane.rowIndex="3" onMouseClicked="#showSpindleSpeedFig"/>
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
 
-        <GridPane fx:id="machineToolSelect" alignment="center" hgap="15.0" styleClass="root" GridPane.columnIndex="0" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+            <Text id="welcome-text" text="Part characteristics" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
 
-            <Label text="Machine-tool" GridPane.rowIndex="2" />
-            <ComboBox fx:id="machineToolType" onMouseClicked="#showMachineToolFig" onAction="#selectionMachineToolDone" prefWidth="230.0" promptText="choose" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <TextField fx:id="path" onKeyReleased="#pathValidation" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Button fx:id="select" onAction="#handleSubmitButtonActionSelect" text="Select"/>
+            </HBox>
+
+            <RadioButton fx:id="selectDetailCharacteristicOption" onMouseClicked="#showFrfFig"
+                         onAction="#disableManualFilling" selected="true" text="Select directory to part's FRF signal"
+                         userData="Auto" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                <toggleGroup>
+                    <ToggleGroup fx:id="toggleGroupSelectFrfFile"/>
+                </toggleGroup>
+                <GridPane.margin>
+                    <Insets/>
+                </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="fillDetailCharacteristicOption" onMouseClicked="#showCalcFig"
+                         onAction="#disableSignalSelection" selected="false" text="Fill part's characteristics manually"
+                         toggleGroup="$toggleGroupSelectFrfFile" userData="Manual" GridPane.rowIndex="3"/>
+
+            <Label prefWidth="135.0" text="Natural frequency, Hz" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="nat_frequency" onKeyReleased="#frequencyValidation" onMouseClicked="#showFrequencyFig"
+                       GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+
+            <Label text="Stiffness, N/mm2" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <TextField fx:id="stiffness" onKeyReleased="#stiffnessValidation" onMouseClicked="#showStifnessFig"
+                       GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+
+            <Label text="Damping ratio" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <TextField fx:id="damping" onKeyReleased="#dampingValidation" onMouseClicked="#showDampingFig"
+                       GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
             <columnConstraints>
-                <ColumnConstraints prefWidth="190.0" />
-                <ColumnConstraints prefWidth="230.0" />
+                <ColumnConstraints prefWidth="350.0"/>
+                <ColumnConstraints prefWidth="70.0"/>
             </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
         </GridPane>
 
-        <GridPane fx:id="machineToolSpindleSpeed" alignment="center" hgap="15.0" styleClass="root" GridPane.columnIndex="0" GridPane.rowIndex="4" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
 
-            <Label text="Maximum spindle speed, rpm" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <TextField fx:id="spindleSpeed" onKeyReleased="#spindleSpeedValidation" onMouseClicked="#showSpindleSpeedFig" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <!--second part-->
+        <GridPane fx:id="machineToolMenu" alignment="center" hgap="15.0" styleClass="root" vgap="10.0"
+                  GridPane.columnIndex="0" GridPane.rowIndex="1" xmlns="http://javafx.com/javafx/8.0.121"
+                  xmlns:fx="http://javafx.com/fxml/1">
+
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+
+            <Text id="welcome-text" text="Machine-tool" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+
+            <RadioButton fx:id="selectMachineTool" onAction="#disableManualSelectionMachineTool"
+                         onMouseClicked="#showMachineToolFig" selected="true" text="Select machinetool" userData="Auto"
+                         GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                <toggleGroup>
+                    <ToggleGroup fx:id="toggleGroupMachineTool"/>
+                </toggleGroup>
+                <GridPane.margin>
+                    <Insets/>
+                </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="fillMachineTool" onAction="#disableAutoSelectionMachineTool" selected="false"
+                         text="Fill machinetool characteristics manually"
+                         toggleGroup="$toggleGroupMachineTool" userData="Manual" GridPane.rowIndex="3"
+                         onMouseClicked="#showSpindleSpeedFig"/>
+
+            <GridPane fx:id="machineToolSelect" alignment="center" hgap="15.0" styleClass="root"
+                      GridPane.columnIndex="0" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121"
+                      xmlns:fx="http://javafx.com/fxml/1">
+
+                <Label text="Machine-tool" GridPane.rowIndex="2"/>
+                <ComboBox fx:id="machineToolType" onMouseClicked="#showMachineToolFig"
+                          onAction="#selectionMachineToolDone" prefWidth="230.0" promptText="choose"
+                          GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="190.0"/>
+                    <ColumnConstraints prefWidth="230.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+            </GridPane>
+
+            <GridPane fx:id="machineToolSpindleSpeed" alignment="center" hgap="15.0" styleClass="root"
+                      GridPane.columnIndex="0" GridPane.rowIndex="4" xmlns="http://javafx.com/javafx/8.0.121"
+                      xmlns:fx="http://javafx.com/fxml/1">
+
+                <Label text="Maximum spindle speed, rpm" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField fx:id="spindleSpeed" onKeyReleased="#spindleSpeedValidation"
+                           onMouseClicked="#showSpindleSpeedFig" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="190.0"/>
+                    <ColumnConstraints prefWidth="230.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                    <RowConstraints/>
+                </rowConstraints>
+            </GridPane>
+            <columnConstraints>
+                <ColumnConstraints/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+        </GridPane>
+
+
+        <!--third part-->
+        <GridPane fx:id="control" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="0"
+                  GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+
+            <padding>
+                <Insets bottom="25.0" left="15.0" right="15.0" top="15.0"/>
+            </padding>
+            <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Button fx:id="back" onAction="#handleSubmitButtonActionBack" text="Back"/>
+                <Button fx:id="next" onAction="#handleSubmitButtonActionNext" text="Next"/>
+                <Button fx:id="cancel" onAction="#handleSubmitButtonActionCancel" text="Cancel"/>
+            </HBox>
+
 
             <columnConstraints>
-                <ColumnConstraints prefWidth="190.0" />
-                <ColumnConstraints prefWidth="230.0" />
+                <ColumnConstraints prefWidth="200.0"/>
+                <ColumnConstraints prefWidth="220.0"/>
             </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+            </rowConstraints>
+
+
         </GridPane>
-      <columnConstraints>
-         <ColumnConstraints />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
-    </GridPane>
-
-
-    <GridPane fx:id="control" alignment="center" hgap="15.0" styleClass="root" vgap="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
-
-        <padding>
-            <Insets bottom="25.0" left="15.0" right="15.0" top="15.0" />
-        </padding>
-        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="0">
-        <Button fx:id="back" onAction="#handleSubmitButtonActionBack" text="Back" />
-        <Button fx:id="next" onAction="#handleSubmitButtonActionNext" text="Next" />
-        <Button fx:id="cancel" onAction="#handleSubmitButtonActionCancel" text="Cancel" />
-        </HBox>
-
-
-        <columnConstraints>
-            <ColumnConstraints prefWidth="200.0" />
-            <ColumnConstraints prefWidth="220.0" />
-        </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
 
 
     </GridPane>
 
 
     <stylesheets>
-        <URL value="@../style/Login.css" />
+        <URL value="@../style/Login.css"/>
     </stylesheets>
     <columnConstraints>
-        <ColumnConstraints prefWidth="300.0" />
-        <ColumnConstraints minWidth="570.0" prefWidth="520.0" />
+        <ColumnConstraints prefWidth="300.0"/>
+        <ColumnConstraints minWidth="570.0" prefWidth="520.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="300" maxHeight="300"/>
-      <RowConstraints />
-      <RowConstraints />
+        <RowConstraints prefHeight="600.0"/>
     </rowConstraints>
 </GridPane>

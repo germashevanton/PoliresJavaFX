@@ -43,12 +43,21 @@ public class Controller3 implements Initializable {
     public int maxSpindleSpeed = -1;
 
     // images
-    Image frequencyFig = new Image(getClass().getResourceAsStream("images/frequency.png"));
+    /*Image frequencyFig = new Image(getClass().getResourceAsStream("images/frequency.png"));
     Image dampingFig = new Image(getClass().getResourceAsStream("images/damping.gif"));
     Image stiffnessFig = new Image(getClass().getResourceAsStream("images/stiffness.png"));
     Image machineToolFig = new Image(getClass().getResourceAsStream("images/machine_tool.png"));
     Image maxN = new Image(getClass().getResourceAsStream("images/max_n.png"));
     Image frf = new Image(getClass().getResourceAsStream("images/frf.png"));
+    Image calc = new Image(getClass().getResourceAsStream("images/calculation.jpg"));*/
+
+    // new my images
+    Image frequencyFig = new Image(getClass().getResourceAsStream("images/myImages/fn.jpg"));
+    Image dampingFig = new Image(getClass().getResourceAsStream("images/myImages/damping.jpg"));
+    Image stiffnessFig = new Image(getClass().getResourceAsStream("images/myImages/stiffness.jpg"));
+    Image machineToolFig = new Image(getClass().getResourceAsStream("images/machine_tool.png"));
+    Image maxN = new Image(getClass().getResourceAsStream("images/myImages/max_rpm.jpg"));
+    Image frf = new Image(getClass().getResourceAsStream("images/myImages/frf.jpg"));
     Image calc = new Image(getClass().getResourceAsStream("images/calculation.jpg"));
 
     //FXML elements
@@ -291,7 +300,7 @@ public class Controller3 implements Initializable {
     }
 
     public void showCalcFig(MouseEvent mouseEvent) {
-        image.setImage(calc);
+        //image.setImage(calc);
     }
 
 
